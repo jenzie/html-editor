@@ -1,5 +1,11 @@
 package se362;
 
+/**
+ * Enum for HTML Constructs.
+ * Each entry has a start and end tag
+ * @author Kevin Mulligan, kam9115@rit.edu
+ *
+ */
 public enum HTMLConstructs {
     HTML("<HTML>", "</HTML>");
     
