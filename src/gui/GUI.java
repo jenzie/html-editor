@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,8 +12,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.awt.FlowLayout;
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -62,11 +66,10 @@ public class GUI extends JFrame {
                 "The only menu in this program that has menu items");
         menuBar.add(fileMenu);
 
-        Icon openIcon = new ImageIcon("Open.png");
-        mntmOpen = new JMenuItem("Open", openIcon);
+        mntmOpen = new JMenuItem("Open", new ImageIcon(GUI.class.getResource("/open.png")));
         fileMenu.add(mntmOpen);
         
-        mntmSave = new JMenuItem("Save");
+        mntmSave = new JMenuItem("Save", new ImageIcon(GUI.class.getResource("/save.png")));
         fileMenu.add(mntmSave);
         
         mntmSaveAs = new JMenuItem("Save As");
@@ -78,13 +81,13 @@ public class GUI extends JFrame {
         editMenu = new JMenu("Edit");
         menuBar.add(editMenu);
         
-        mntmCut = new JMenuItem("Cut");
+        mntmCut = new JMenuItem("Cut", new ImageIcon(GUI.class.getResource("/cut.png")));
         editMenu.add(mntmCut);
         
-        mntmCopy = new JMenuItem("Copy");
+        mntmCopy = new JMenuItem("Copy", new ImageIcon(GUI.class.getResource("/copy.png")));
         editMenu.add(mntmCopy);
         
-        mntmPaste = new JMenuItem("Paste");
+        mntmPaste = new JMenuItem("Paste", new ImageIcon(GUI.class.getResource("/paste.png")));
         editMenu.add(mntmPaste);
         
         insertMenu = new JMenu("Insert");
