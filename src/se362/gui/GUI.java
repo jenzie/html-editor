@@ -1,9 +1,7 @@
-package gui;
+package se362.gui;
 
 import java.awt.BorderLayout;
 
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,11 +10,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.awt.FlowLayout;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
+import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -31,6 +32,11 @@ public class GUI extends JFrame {
     private JMenuItem mntmCut;
     private JMenuItem mntmCopy;
     private JMenuItem mntmPaste;
+    private JButton btnOpen;
+    private JButton btnSave;
+    private JButton btnCut;
+    private JButton btnCopy;
+    private JButton btnPaste;
 
     /**
      * Launch the application.
@@ -56,7 +62,27 @@ public class GUI extends JFrame {
         
         JPanel iconPane = new JPanel();
         getContentPane().add(iconPane, BorderLayout.NORTH);
-        iconPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        iconPane.setLayout(new FlowLayout(FlowLayout.LEFT, 1, 1));
+        
+        btnOpen = new JButton(new ImageIcon(GUI.class.getResource("/open.png")));
+        btnOpen.setPreferredSize(new Dimension(22, 22));
+        iconPane.add(btnOpen);
+        
+        btnSave = new JButton(new ImageIcon(GUI.class.getResource("/save.png")));
+        btnSave.setPreferredSize(new Dimension(22, 22));
+        iconPane.add(btnSave);
+        
+        btnCut = new JButton(new ImageIcon(GUI.class.getResource("/cut.png")));
+        btnCut.setPreferredSize(new Dimension(22, 22));
+        iconPane.add(btnCut);
+        
+        btnCopy = new JButton(new ImageIcon(GUI.class.getResource("/copy.png")));
+        btnCopy.setPreferredSize(new Dimension(22, 22));
+        iconPane.add(btnCopy);
+        
+        btnPaste = new JButton(new ImageIcon(GUI.class.getResource("/paste.png")));
+        btnPaste.setPreferredSize(new Dimension(22, 22));
+        iconPane.add(btnPaste);
         
         menuBar = new JMenuBar();
         
