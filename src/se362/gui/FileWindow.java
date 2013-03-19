@@ -4,11 +4,17 @@ import javax.swing.*;
 
 import java.io.File;
 
-public class FileWindow {
+public class FileWindow extends JPanel{
 	
 	private File currentFile;
 	private JTextArea textArea;
 	
+	
+	public static void main(String args[]) {
+	    JFrame frame = new JFrame();
+	    frame.add(new FileWindow());
+	    frame.setVisible(true);
+	}
 	//Default Constructor
 	public FileWindow(){
 
