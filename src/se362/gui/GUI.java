@@ -11,6 +11,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -37,6 +39,8 @@ public class GUI extends JFrame {
     private JButton btnCut;
     private JButton btnCopy;
     private JButton btnPaste;
+    
+    private ArrayList<FileWindow> windows;
 
     /**
      * Launch the application.
@@ -53,10 +57,23 @@ public class GUI extends JFrame {
      * Create the frame.
      */
     public GUI(File startFile) {
+        this.windows = new ArrayList<FileWindow>();
+        if(startFile == null) {
+            FileWindow window = new FileWindow();
+            windows.add(window);
+        }
+        else {
+            FileWindow window = new FileWindow(startFile);
+            windows.add(window);
+        }
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 870, 473);
         
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        for(FileWindow f : windows) {
+            tabbedPane.add(f);
+        }
         
         getContentPane().setLayout(new BorderLayout());
         
