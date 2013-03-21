@@ -15,11 +15,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.filechooser.FileFilter;
+
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -46,6 +44,7 @@ public class GUI extends JFrame {
     
     private ArrayList<FileWindow> windows;
     private JTabbedPane tabbedPane;
+    private JMenuItem mntmCloseTab;
 
     /**
      * Launch the application.
@@ -73,6 +72,30 @@ public class GUI extends JFrame {
         }
         
         this.fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileFilter() {
+
+            @Override
+            public boolean accept(File f) {
+                if(f.isDirectory()) {
+                    return true;
+                }
+                String extension = getExtension(f);
+                if(extension != null) {
+                    if(extension.equals("html") || extension.equals("txt")) {
+                        return true;
+                    }
+                }
+                
+                return false;
+            }
+
+            @Override
+            public String getDescription() {
+                return "Shows only html and txt files";
+            }
+            
+        });
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 870, 473);
         
@@ -135,6 +158,14 @@ public class GUI extends JFrame {
         fileMenu.add(mntmSaveAs);
         getContentPane().add(tabbedPane, BorderLayout.CENTER);
         
+        mntmCloseTab = new JMenuItem("Close current tab", new ImageIcon(GUI.class.getResource("/close.png")));
+        mntmCloseTab.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                closeSelectedTab();
+            }
+        });
+        fileMenu.add(mntmCloseTab);
+        
         setJMenuBar(menuBar);
         
         editMenu = new JMenu("Edit");
@@ -167,6 +198,23 @@ public class GUI extends JFrame {
         FileWindow w = new FileWindow(file);
         windows.add(w);
         tabbedPane.add(w);
+    }
+    
+    public void closeSelectedTab() {
+        windows.remove(tabbedPane.getSelectedComponent());
+        tabbedPane.remove(tabbedPane.getSelectedIndex());
+        System.out.println(windows);
+    }
+    
+    public static String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
     }
 
 }
