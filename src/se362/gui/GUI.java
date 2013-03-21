@@ -3,6 +3,7 @@ package se362.gui;
 import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -20,6 +21,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -39,8 +42,10 @@ public class GUI extends JFrame {
     private JButton btnCut;
     private JButton btnCopy;
     private JButton btnPaste;
+    private JFileChooser fileChooser;
     
     private ArrayList<FileWindow> windows;
+    private JTabbedPane tabbedPane;
 
     /**
      * Launch the application.
@@ -67,10 +72,11 @@ public class GUI extends JFrame {
             windows.add(window);
         }
         
+        this.fileChooser = new JFileChooser();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 870, 473);
         
-        JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         for(FileWindow f : windows) {
             tabbedPane.add(f);
         }
@@ -83,6 +89,11 @@ public class GUI extends JFrame {
         
         btnOpen = new JButton(new ImageIcon(GUI.class.getResource("/open.png")));
         btnOpen.setPreferredSize(new Dimension(22, 22));
+        btnOpen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                open();
+            }
+        });
         iconPane.add(btnOpen);
         
         btnSave = new JButton(new ImageIcon(GUI.class.getResource("/save.png")));
@@ -110,6 +121,11 @@ public class GUI extends JFrame {
         menuBar.add(fileMenu);
 
         mntmOpen = new JMenuItem("Open", new ImageIcon(GUI.class.getResource("/open.png")));
+        mntmOpen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                open();
+            }
+        });
         fileMenu.add(mntmOpen);
         
         mntmSave = new JMenuItem("Save", new ImageIcon(GUI.class.getResource("/save.png")));
@@ -136,6 +152,21 @@ public class GUI extends JFrame {
         insertMenu = new JMenu("Insert");
         menuBar.add(insertMenu);
         setVisible(true);
+    }
+    
+    public void open() {
+        int choice = fileChooser.showOpenDialog(this);
+        if(choice == JFileChooser.APPROVE_OPTION) {
+            open(fileChooser.getSelectedFile());
+        }
+        else {
+        }
+    }
+    
+    public void open(File file) {
+        FileWindow w = new FileWindow(file);
+        windows.add(w);
+        tabbedPane.add(w);
     }
 
 }
