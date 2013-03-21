@@ -185,28 +185,45 @@ public class GUI extends JFrame {
         setVisible(true);
     }
     
+    /**
+     * Prompts the user to select a file to open, then displays the file
+     */
     public void open() {
         int choice = fileChooser.showOpenDialog(this);
         if(choice == JFileChooser.APPROVE_OPTION) {
             open(fileChooser.getSelectedFile());
         }
-        else {
+        else {//Do nothing if cancelled
         }
     }
     
+    /**
+     * Given a file, adds the file to the view
+     * @param file: the file to open
+     */
     public void open(File file) {
         FileWindow w = new FileWindow(file);
         windows.add(w);
         tabbedPane.add(w);
+        tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
     }
     
+    /**
+     * Closes the currently selected tab
+     */
     public void closeSelectedTab() {
         windows.remove(tabbedPane.getSelectedComponent());
         tabbedPane.remove(tabbedPane.getSelectedIndex());
-        System.out.println(windows);
+        //TODO check for unsaved
+        //TODO HTML check
     }
     
-    public static String getExtension(File f) {
+    /**
+     * Returns the extension of the given file
+     * @param f: file to check
+     * @return String: the file extension
+     */
+    public String getExtension(File f) {
         String ext = null;
         String s = f.getName();
         int i = s.lastIndexOf('.');
