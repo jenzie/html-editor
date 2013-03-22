@@ -1,11 +1,12 @@
 package se362.command;
 
-public class Save implements Command {
+/*
+ * Save Functionality: If file has changed, save file to a new location
+ * or overwrite pre-existing file
+ * @author Brad Bensch, brb7020@g.rit.edu
+ * 
+ */
 
-    @Override
-    public void execute() {
-        // TODO Auto-generated method stub
-
-    }
+public class Save {
 
 }
