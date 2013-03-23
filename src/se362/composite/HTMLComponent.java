@@ -27,6 +27,7 @@ public abstract class HTMLComponent {
 			// add child to parent
 			return true;
 		}
+		return false;
 	}
 
 }
