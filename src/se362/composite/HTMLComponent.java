@@ -5,7 +5,7 @@ public abstract class HTMLComponent {
 	private boolean isClosed;
 
 	public HTMLComponent(String tag) {
-		this.name = tag.toLowerCase();
+		this.name = tag.toLowerCase(); // or to upper, since enums are uppercase
 	}
 
 	public String getName() {
