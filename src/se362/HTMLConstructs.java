@@ -7,8 +7,7 @@ package se362;
  *
  */
 public enum HTMLConstructs {
-    HTML("<HTML>", "</HTML>");
-
+    HTML("<html>", "</html>");
     
     private final String openTag;
     private final String closeTag;
