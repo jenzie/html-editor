@@ -9,4 +9,8 @@ package se362.command;
  */
 public class NewFile {
 
+	public void doMake(){
+		
+	}
+	
 }

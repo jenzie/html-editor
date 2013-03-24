@@ -8,7 +8,7 @@ package se362.command;
  *
  */
 public class HTMLCheckerCommand implements Command{
-	HTMLChecker html
+	HTMLChecker html;
 	
 	public HTMLCheckerCommand(HTMLChecker html){
 		this.html = html;

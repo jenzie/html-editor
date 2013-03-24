@@ -8,4 +8,8 @@ package se362.command;
  */
 public class Paste {
 
+	public void doPaste(){
+		
+	}
+	
 }

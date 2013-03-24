@@ -8,5 +8,9 @@ package se362.command;
  *
  */
 public class HTMLChecker {
-
+	
+	public void doCheck(){
+		
+	}
+	
 }

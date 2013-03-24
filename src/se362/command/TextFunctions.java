@@ -10,10 +10,8 @@ public class TextFunctions {
 		edit[1] = new CopyCommand(new Copy());
 		edit[2] = new CutCommand(new Cut());
 		edit[3] = new PasteCommand(new Paste());
-		edit[4] = new NewFileCommand(new newFile());
+		edit[4] = new NewFileCommand(new NewFile());
 		edit[5] = new HTMLCheckerCommand(new HTMLChecker());
-		//TODO: Add New file Command
-		//TODO: Add HTMLcheck Command
 	}
 	
 	/*
