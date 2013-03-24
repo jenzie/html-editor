@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
@@ -125,7 +126,23 @@ public class GUI extends JFrame {
         
         JButton btnSave = new JButton(new ImageIcon(GUI.class.getResource("/save.png")));
         btnSave.setPreferredSize(new Dimension(22, 22));
+        btnSave.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ( (FileWindow) tabbedPane.getSelectedComponent()).save();
+            }
+        });
         iconPane.add(btnSave);
+        
+        JButton btnCloseTab = new JButton(new ImageIcon(GUI.class.getResource("/close.png")));
+        btnCloseTab.setPreferredSize(new Dimension(22, 22));
+        btnCloseTab.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                closeSelectedTab();
+            }
+        });
+        iconPane.add(btnCloseTab);
+        
+        iconPane.add(new JLabel("    "));
         
         JButton btnCut = new JButton(new ImageIcon(GUI.class.getResource("/cut.png")));
         btnCut.setPreferredSize(new Dimension(22, 22));
@@ -139,27 +156,11 @@ public class GUI extends JFrame {
         btnPaste.setPreferredSize(new Dimension(22, 22));
         iconPane.add(btnPaste);
         
-        JButton btnCloseTab = new JButton(new ImageIcon(GUI.class.getResource("/close.png")));
-        btnCloseTab.setPreferredSize(new Dimension(22, 22));
-        btnCloseTab.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                closeSelectedTab();
-            }
-        });
-        iconPane.add(btnCloseTab);
-        
         JMenuBar menuBar = new JMenuBar();
         
         JMenu fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
 
-        JMenuItem mntmOpen = new JMenuItem("Open", new ImageIcon(GUI.class.getResource("/open.png")));
-        mntmOpen.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                open();
-            }
-        });
-        
         JMenuItem mntmNew = new JMenuItem("New", new ImageIcon(GUI.class.getResource("/new.png")));
         mntmNew.addActionListener(new ActionListener() {
             @Override
@@ -168,9 +169,21 @@ public class GUI extends JFrame {
             }
         });
         fileMenu.add(mntmNew);
+        
+        JMenuItem mntmOpen = new JMenuItem("Open", new ImageIcon(GUI.class.getResource("/open.png")));
+        mntmOpen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                open();
+            }
+        });
         fileMenu.add(mntmOpen);
         
         JMenuItem mntmSave = new JMenuItem("Save", new ImageIcon(GUI.class.getResource("/save.png")));
+        mntmSave.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ( (FileWindow) tabbedPane.getSelectedComponent()).save();
+            }
+        });
         fileMenu.add(mntmSave);
         
         JMenuItem mntmSaveAs = new JMenuItem("Save As");
@@ -252,8 +265,11 @@ public class GUI extends JFrame {
      * Closes the currently selected tab
      */
     public void closeSelectedTab() {
-        windows.remove(tabbedPane.getSelectedComponent());
-        tabbedPane.remove(tabbedPane.getSelectedIndex());
+        FileWindow w = (FileWindow) tabbedPane.getSelectedComponent();
+        if(w == null) return;
+        int i = tabbedPane.getSelectedIndex();
+        windows.remove(w);
+        tabbedPane.remove(i);
         //TODO check for unsaved
         //TODO HTML check
     }
