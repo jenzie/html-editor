@@ -3,6 +3,7 @@ package se362.gui;
 import javax.swing.*;
 
 import java.awt.BorderLayout;
+import java.awt.ScrollPane;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -26,8 +27,11 @@ public class FileWindow extends JPanel{
 	    setLayout(new BorderLayout());
 	    textArea = new JTextArea();
 	    currentFile = null;
-	
-	    add(textArea, BorderLayout.CENTER);
+	    
+	    ScrollPane scroll = new ScrollPane();
+	    scroll.add(textArea);
+	    
+	    add(scroll, BorderLayout.CENTER);
 	    textArea.setWrapStyleWord(true);
 	    textArea.setLineWrap(true);
 
@@ -69,6 +73,20 @@ public class FileWindow extends JPanel{
 		
 		
 		
+	}
+	
+	public String getSelectedText() {
+	    return textArea.getSelectedText();
+	}
+	
+	public String cutSelectedText() {
+	    String s = textArea.getSelectedText();
+	    textArea.cut();
+	    return s;
+	}
+	
+	public void insertText(String text) {
+	    textArea.insert(text, textArea.getSelectionStart());
 	}
 	
 	public File getFile(){

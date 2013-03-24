@@ -25,26 +25,11 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
 
-    private JMenuBar menuBar;
-    private JMenu fileMenu;
-    private JMenuItem mntmOpen;
-    private JMenuItem mntmSave;
-    private JMenuItem mntmSaveAs;
-    private JMenu editMenu;
-    private JMenu insertMenu;
-    private JMenuItem mntmCut;
-    private JMenuItem mntmCopy;
-    private JMenuItem mntmPaste;
-    private JButton btnOpen;
-    private JButton btnSave;
-    private JButton btnCut;
-    private JButton btnCopy;
-    private JButton btnPaste;
     private JFileChooser fileChooser;
+    private Clipboard clipboard;
     
     private ArrayList<FileWindow> windows;
     private JTabbedPane tabbedPane;
-    private JMenuItem mntmCloseTab;
 
     /**
      * Launch the application.
@@ -71,10 +56,10 @@ public class GUI extends JFrame {
             windows.add(window);
         }
         
+        this.clipboard = new Clipboard();
+        
         this.fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new FileFilter() {
-
-            @Override
             public boolean accept(File f) {
                 if(f.isDirectory()) {
                     return true;
@@ -85,15 +70,11 @@ public class GUI extends JFrame {
                         return true;
                     }
                 }
-                
                 return false;
             }
-
-            @Override
             public String getDescription() {
                 return "Shows only html and txt files";
             }
-            
         });
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,7 +91,7 @@ public class GUI extends JFrame {
         getContentPane().add(iconPane, BorderLayout.NORTH);
         iconPane.setLayout(new FlowLayout(FlowLayout.LEFT, 1, 1));
         
-        btnOpen = new JButton(new ImageIcon(GUI.class.getResource("/open.png")));
+        JButton btnOpen = new JButton(new ImageIcon(GUI.class.getResource("/open.png")));
         btnOpen.setPreferredSize(new Dimension(22, 22));
         btnOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
@@ -119,46 +100,52 @@ public class GUI extends JFrame {
         });
         iconPane.add(btnOpen);
         
-        btnSave = new JButton(new ImageIcon(GUI.class.getResource("/save.png")));
+        JButton btnSave = new JButton(new ImageIcon(GUI.class.getResource("/save.png")));
         btnSave.setPreferredSize(new Dimension(22, 22));
         iconPane.add(btnSave);
         
-        btnCut = new JButton(new ImageIcon(GUI.class.getResource("/cut.png")));
+        JButton btnCut = new JButton(new ImageIcon(GUI.class.getResource("/cut.png")));
         btnCut.setPreferredSize(new Dimension(22, 22));
         iconPane.add(btnCut);
         
-        btnCopy = new JButton(new ImageIcon(GUI.class.getResource("/copy.png")));
+        JButton btnCopy = new JButton(new ImageIcon(GUI.class.getResource("/copy.png")));
         btnCopy.setPreferredSize(new Dimension(22, 22));
         iconPane.add(btnCopy);
         
-        btnPaste = new JButton(new ImageIcon(GUI.class.getResource("/paste.png")));
+        JButton btnPaste = new JButton(new ImageIcon(GUI.class.getResource("/paste.png")));
         btnPaste.setPreferredSize(new Dimension(22, 22));
         iconPane.add(btnPaste);
         
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         
-        fileMenu = new JMenu("File");
-        fileMenu.setMnemonic(KeyEvent.VK_A);
-        fileMenu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
+        JMenu fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
 
-        mntmOpen = new JMenuItem("Open", new ImageIcon(GUI.class.getResource("/open.png")));
+        JMenuItem mntmOpen = new JMenuItem("Open", new ImageIcon(GUI.class.getResource("/open.png")));
         mntmOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 open();
             }
         });
+        
+        JMenuItem mntmNew = new JMenuItem("New", new ImageIcon(GUI.class.getResource("/new.png")));
+        mntmNew.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                newTab();
+            }
+        });
+        fileMenu.add(mntmNew);
         fileMenu.add(mntmOpen);
         
-        mntmSave = new JMenuItem("Save", new ImageIcon(GUI.class.getResource("/save.png")));
+        JMenuItem mntmSave = new JMenuItem("Save", new ImageIcon(GUI.class.getResource("/save.png")));
         fileMenu.add(mntmSave);
         
-        mntmSaveAs = new JMenuItem("Save As");
+        JMenuItem mntmSaveAs = new JMenuItem("Save As");
         fileMenu.add(mntmSaveAs);
         getContentPane().add(tabbedPane, BorderLayout.CENTER);
         
-        mntmCloseTab = new JMenuItem("Close current tab", new ImageIcon(GUI.class.getResource("/close.png")));
+        JMenuItem mntmCloseTab = new JMenuItem("Close current tab", new ImageIcon(GUI.class.getResource("/close.png")));
         mntmCloseTab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 closeSelectedTab();
@@ -166,21 +153,36 @@ public class GUI extends JFrame {
         });
         fileMenu.add(mntmCloseTab);
         
+        JMenuItem mntmExit = new JMenuItem("Exit");
+        mntmExit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                for(FileWindow w : windows) {
+                    //TODO Save/check all
+                    tabbedPane.remove(w);
+                }
+                System.exit(0);
+            }
+        });
+        fileMenu.add(mntmExit);
+        
         setJMenuBar(menuBar);
         
-        editMenu = new JMenu("Edit");
+        JMenu editMenu = new JMenu("Edit");
         menuBar.add(editMenu);
         
-        mntmCut = new JMenuItem("Cut", new ImageIcon(GUI.class.getResource("/cut.png")));
+        JMenuItem mntmCut = new JMenuItem("Cut", new ImageIcon(GUI.class.getResource("/cut.png")));
         editMenu.add(mntmCut);
         
-        mntmCopy = new JMenuItem("Copy", new ImageIcon(GUI.class.getResource("/copy.png")));
+        JMenuItem mntmCopy = new JMenuItem("Copy", new ImageIcon(GUI.class.getResource("/copy.png")));
         editMenu.add(mntmCopy);
         
-        mntmPaste = new JMenuItem("Paste", new ImageIcon(GUI.class.getResource("/paste.png")));
+        JMenuItem mntmPaste = new JMenuItem("Paste", new ImageIcon(GUI.class.getResource("/paste.png")));
         editMenu.add(mntmPaste);
         
-        insertMenu = new JMenu("Insert");
+        JMenuItem mntmCheckHtml = new JMenuItem("Check HTML", new ImageIcon(GUI.class.getResource("/check.png")));
+        editMenu.add(mntmCheckHtml);
+        
+        JMenu insertMenu = new JMenu("Insert");
         menuBar.add(insertMenu);
         setVisible(true);
     }
@@ -203,6 +205,16 @@ public class GUI extends JFrame {
      */
     public void open(File file) {
         FileWindow w = new FileWindow(file);
+        windows.add(w);
+        tabbedPane.add(w);
+        tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
+    }
+    
+    /**
+     * Opens a new, empty tab
+     */
+    public void  newTab() {
+        FileWindow w = new FileWindow();
         windows.add(w);
         tabbedPane.add(w);
         tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
