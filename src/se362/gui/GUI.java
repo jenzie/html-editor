@@ -21,6 +21,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyListener;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -46,6 +47,19 @@ public class GUI extends JFrame {
      * Create the frame.
      */
     public GUI(File startFile) {
+        setFocusable(true);
+        addKeyListener(new KeyListener() {//TODO update control character commands
+            public void keyPressed(KeyEvent e) {
+                System.out.println("kp");
+            }
+            public void keyReleased(KeyEvent e) {
+                System.out.println("kr");
+            }
+            public void keyTyped(KeyEvent e) {
+                System.out.println("[");
+            } 
+        });
+        
         this.windows = new ArrayList<FileWindow>();
         if(startFile == null) {
             FileWindow window = new FileWindow();
@@ -91,6 +105,15 @@ public class GUI extends JFrame {
         getContentPane().add(iconPane, BorderLayout.NORTH);
         iconPane.setLayout(new FlowLayout(FlowLayout.LEFT, 1, 1));
         
+        JButton btnNew = new JButton(new ImageIcon(GUI.class.getResource("/new.png")));
+        btnNew.setPreferredSize(new Dimension(22, 22));
+        btnNew.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                newTab();
+            }
+        });
+        iconPane.add(btnNew);
+        
         JButton btnOpen = new JButton(new ImageIcon(GUI.class.getResource("/open.png")));
         btnOpen.setPreferredSize(new Dimension(22, 22));
         btnOpen.addActionListener(new ActionListener() {
@@ -115,6 +138,15 @@ public class GUI extends JFrame {
         JButton btnPaste = new JButton(new ImageIcon(GUI.class.getResource("/paste.png")));
         btnPaste.setPreferredSize(new Dimension(22, 22));
         iconPane.add(btnPaste);
+        
+        JButton btnCloseTab = new JButton(new ImageIcon(GUI.class.getResource("/close.png")));
+        btnCloseTab.setPreferredSize(new Dimension(22, 22));
+        btnCloseTab.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                closeSelectedTab();
+            }
+        });
+        iconPane.add(btnCloseTab);
         
         JMenuBar menuBar = new JMenuBar();
         
@@ -156,11 +188,7 @@ public class GUI extends JFrame {
         JMenuItem mntmExit = new JMenuItem("Exit");
         mntmExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                for(FileWindow w : windows) {
-                    //TODO Save/check all
-                    tabbedPane.remove(w);
-                }
-                System.exit(0);
+                //TODO exit program
             }
         });
         fileMenu.add(mntmExit);
@@ -228,6 +256,10 @@ public class GUI extends JFrame {
         tabbedPane.remove(tabbedPane.getSelectedIndex());
         //TODO check for unsaved
         //TODO HTML check
+    }
+    
+    public void close() {
+        //TODO close program
     }
     
     /**
