@@ -7,7 +7,11 @@ package se362;
  *
  */
 public enum HTMLConstructs {
-    HTML("<html>", "</html>");
+    HTML("<html>", "</html>"),
+    BOLD("<b>", "</b>"),
+    UNDERLINE("<u>", "</u>"),
+    ITALICS("<i>", "</i>")
+    ;
     
     private final String openTag;
     private final String closeTag;
