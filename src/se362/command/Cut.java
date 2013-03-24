@@ -8,7 +8,11 @@ package se362.command;
 public class Cut {
 
 	public void doCut() {
-		
+		/*
+		 * Find current selected text
+		 * Save text to GUI Clipboard
+		 * Remove text from TextArea
+		 */
 	}
 	
 }

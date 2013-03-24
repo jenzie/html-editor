@@ -7,6 +7,10 @@ package se362.command;
 public class Copy {
 
 	public void doCopy(){
+		/*
+		 * Find current selected text
+		 * Save it to the GUI Clipboard
+		 */
 		
 	}
 	

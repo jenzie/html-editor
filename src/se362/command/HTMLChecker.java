@@ -10,7 +10,7 @@ package se362.command;
 public class HTMLChecker {
 	
 	public void doCheck(){
-		
+		//Run HTMLCheck on current file
 	}
 	
 }

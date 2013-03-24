@@ -10,7 +10,9 @@ package se362.command;
 public class NewFile {
 
 	public void doMake(){
-		
+		/*
+		 * Open new blank file
+		 */
 	}
 	
 }

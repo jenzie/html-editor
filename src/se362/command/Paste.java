@@ -9,6 +9,10 @@ package se362.command;
 public class Paste {
 
 	public void doPaste(){
+		/*
+		 * Take information from GUI Clipboard and
+		 * insert it at current text location
+		 */
 		
 	}
 	
