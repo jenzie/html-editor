@@ -2,21 +2,28 @@ package se362.gui;
 
 import java.awt.BorderLayout;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
 
+@SuppressWarnings("serial")
 public class FileWindow extends JPanel{
+    private GUI parent;
 	
 	private File currentFile;
 	private JTextArea textArea;
 	
 	//Default Constructor
-	public FileWindow(){
+	public FileWindow(GUI g){
+	    this.parent = g;
 
 	    setLayout(new BorderLayout());
 	    textArea = new JTextArea();
@@ -28,12 +35,56 @@ public class FileWindow extends JPanel{
 	    add(scroll, BorderLayout.CENTER);
 	    textArea.setWrapStyleWord(true);
 	    textArea.setLineWrap(true);
+	    
+        //Control Character commands
+        textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "doSaveAction");
+        textArea.getActionMap().put("doSaveAction", new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO save
+                System.out.println(e.getID());
+            }
+        });
+        textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK), "doNewAction");
+        textArea.getActionMap().put("doNewAction", new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO new
+                System.out.println(e.getID());
+            }
+        });
+        textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_DOWN_MASK), "doOpenAction");
+        textArea.getActionMap().put("doOpenAction", new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO open
+                System.out.println(e.getID());
+            }
+        });
+        textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.CTRL_DOWN_MASK), "doCutAction");
+        textArea.getActionMap().put("doCutAction", new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO cut
+                System.out.println(e.getID());
+            }
+        });
+        textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK), "doCopyAction");
+        textArea.getActionMap().put("doCopyAction", new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO copy
+                System.out.println(e.getID());
+            }
+        });
+        textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK), "doPasteAction");
+        textArea.getActionMap().put("doPasteAction", new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO paste
+                System.out.println(e.getID());
+            }
+        });
 
 	}
 
 	//Constructor with given filename
-	public FileWindow(File file) {
-	    this();
+	public FileWindow(GUI g, File file) {
+	    this(g);
 	    this.currentFile = file;
 	    try {
             textArea.read(new FileReader(file), null);
