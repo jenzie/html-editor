@@ -1,5 +1,7 @@
 package se362.command;
 
+import se362.gui.GUI;
+
 /*
  * Paste Functionality; Takes from the clipboard and adds the 
  * saved text at the cursor
@@ -7,6 +9,11 @@ package se362.command;
  * 
  */
 public class Paste {
+	private GUI editor;
+	
+	public Paste(GUI editor){
+		this.editor = editor;
+	}
 
 	public void doPaste(){
 		/*
