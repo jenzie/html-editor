@@ -6,9 +6,14 @@ import se362.HTMLConstructs;
  * @author Jenny Zhen, coffee@csh.rit.edu
  */
 
+/**
+ * HTMLComponent
+ * Defines methods that html nodes may use or override if extending from this
+ * class (particularly, HTMLComposite and HTMLLeaf).
+ */
 public abstract class HTMLComponent {
 	private String name;
-	private boolean isClosed;
+	public boolean isClosed;
 
 	/**
 	 * Constructor.
@@ -16,6 +21,7 @@ public abstract class HTMLComponent {
 	 */
 	public HTMLComponent(String tag) {
 		this.name = tag.toLowerCase(); // or to upper, since enums are uppercase
+		this.isClosed = false;
 	}
 
 	/**
