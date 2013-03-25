@@ -16,7 +16,7 @@ public class HTMLComposite extends HTMLComponent{
 		this.isClosed = false;
 		this.children = new ArrayList<HTMLComponent>();
 	}
-	
+
 	public String getName() {
 		return super.getName();
 	}
@@ -31,5 +31,9 @@ public class HTMLComposite extends HTMLComponent{
 
 	public boolean add(HTMLComponent node) {
 		return super.add(node);
+	}
+
+	public boolean addChild(HTMLComponent child) {
+		return children.add(child);
 	}
 }

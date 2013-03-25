@@ -47,13 +47,16 @@ public abstract class HTMLComponent {
 		} return false;
 	}
 
-	// parameter might not be correct
-	public boolean add(HTMLComponent node) {
+	/**
+	 * Attempts to add a child to this parent node, if and only if, the child
+	 * node is a valid html tag. Otherwise, ignore attempt to add.
+	 * @param child	node to add to parent node in tree structure.
+	 * @return	true if child was added successfully.
+	 */
+	public boolean add(HTMLComponent child) {
 		if (checkValidTag()) {
-			// add child to parent
+			((HTMLComposite) this).addChild(child);
 			return true;
-		}
-		return false;
+		} return false;
 	}
-
 }
