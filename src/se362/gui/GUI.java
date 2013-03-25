@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.filechooser.FileFilter;
 
+import se362.command.TextFunctions;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
@@ -27,6 +29,7 @@ public class GUI extends JFrame {
 
     private JFileChooser fileChooser;
     private Clipboard clipboard;
+    private TextFunctions invoker;
     
     private ArrayList<FileWindow> windows;
     private JTabbedPane tabbedPane;
@@ -56,6 +59,7 @@ public class GUI extends JFrame {
             FileWindow window = new FileWindow(this, startFile);
             windows.add(window);
         }
+        //TODO this.invoker = new TextFunctions(this);
         
         this.clipboard = new Clipboard();
         
@@ -114,7 +118,7 @@ public class GUI extends JFrame {
         btnSave.setPreferredSize(new Dimension(22, 22));
         btnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ( (FileWindow) tabbedPane.getSelectedComponent()).save();
+                //TODO save
             }
         });
         iconPane.add(btnSave);
@@ -167,7 +171,7 @@ public class GUI extends JFrame {
         JMenuItem mntmSave = new JMenuItem("Save", new ImageIcon(GUI.class.getResource("/save.png")));
         mntmSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ( (FileWindow) tabbedPane.getSelectedComponent()).save();
+                //TODO save
             }
         });
         fileMenu.add(mntmSave);
