@@ -1,6 +1,13 @@
 package se362.command;
 
 public class TextFunctions {
+    public static final int SAVE = 0;
+    public static final int COPY = 1;
+    public static final int CUT = 2;
+    public static final int PASTE = 3;
+    public static final int NEW = 4;
+    public static final int CHECK = 5;
+
 	Command[] edit;
 	
 	//Constructor
