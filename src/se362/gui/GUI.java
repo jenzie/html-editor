@@ -11,7 +11,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -22,7 +21,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyListener;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -48,26 +46,14 @@ public class GUI extends JFrame {
      * Create the frame.
      */
     public GUI(File startFile) {
-        setFocusable(true);
-        addKeyListener(new KeyListener() {//TODO update control character commands
-            public void keyPressed(KeyEvent e) {
-                System.out.println("kp");
-            }
-            public void keyReleased(KeyEvent e) {
-                System.out.println("kr");
-            }
-            public void keyTyped(KeyEvent e) {
-                System.out.println("[");
-            } 
-        });
-        
+        this.setTitle("HTML Editor");
         this.windows = new ArrayList<FileWindow>();
         if(startFile == null) {
-            FileWindow window = new FileWindow();
+            FileWindow window = new FileWindow(this);
             windows.add(window);
         }
         else {
-            FileWindow window = new FileWindow(startFile);
+            FileWindow window = new FileWindow(this, startFile);
             windows.add(window);
         }
         
@@ -245,7 +231,7 @@ public class GUI extends JFrame {
      * @param file: the file to open
      */
     public void open(File file) {
-        FileWindow w = new FileWindow(file);
+        FileWindow w = new FileWindow(this, file);
         windows.add(w);
         tabbedPane.add(w);
         tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
@@ -255,7 +241,7 @@ public class GUI extends JFrame {
      * Opens a new, empty tab
      */
     public void  newTab() {
-        FileWindow w = new FileWindow();
+        FileWindow w = new FileWindow(this);
         windows.add(w);
         tabbedPane.add(w);
         tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
