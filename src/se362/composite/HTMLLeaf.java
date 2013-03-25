@@ -1,5 +1,9 @@
 package se362.composite;
 
+/**
+ * @author Jenny Zhen, coffee@csh.rit.edu
+ */
+
 public class HTMLLeaf extends HTMLComponent{
 	private String name;
 	private boolean isClosed;

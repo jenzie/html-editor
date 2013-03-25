@@ -1,5 +1,9 @@
 package se362.composite;
 
+/**
+ * @author Jenny Zhen, coffee@csh.rit.edu
+ */
+
 public abstract class HTMLComponent {
 	private String name;
 	private boolean isClosed;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package se362.command;
 
 /**

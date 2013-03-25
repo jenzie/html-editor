@@ -2,6 +2,10 @@ package se362.composite;
 
 import java.util.ArrayList;
 
+/**
+ * @author Jenny Zhen, coffee@csh.rit.edu
+ */
+
 public class HTMLComposite extends HTMLComponent{
 	private String name;
 	private boolean isClosed;

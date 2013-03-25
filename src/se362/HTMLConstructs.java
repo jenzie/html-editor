@@ -4,7 +4,7 @@ package se362;
  * Enum for HTML Constructs.
  * Each entry has a start and end tag
  * @author Kevin Mulligan, kam9115@rit.edu
- *
+ * @author Jenny Zhen, coffee@csh.rit.edu
  */
 public enum HTMLConstructs {
     HTML("<html>", "</html>"), HEAD("<head>","</head>"),
@@ -28,16 +28,29 @@ public enum HTMLConstructs {
 
     private final String openTag;
     private final String closeTag;
-    
+
+	/**
+	 * Constructor.
+	 * @param open	opening tag value
+	 * @param close	closing tag value
+	 */
     HTMLConstructs(String open, String close) {
         this.openTag = open;
         this.closeTag = close;
     }
-    
+
+	/**
+	 * Getter for enum's opening tag.
+	 * @return	opening tag associated with enum.
+	 */
     public String getOpenTag() {
         return this.openTag;
     }
-    
+
+	/**
+	 * Getter for enum's closing tag.
+	 * @return	closing tag associated with enum.
+	 */
     public String getCloseTag() {
         return this.closeTag;
     }
