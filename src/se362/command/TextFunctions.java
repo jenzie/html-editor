@@ -12,7 +12,7 @@ public class TextFunctions {
     public static final int CHECK = 5;
     public static final int SAVEAS = 6;
     
-    public GUI editor;
+    private GUI editor;
 
 	Command[] edit;
 	
@@ -20,7 +20,7 @@ public class TextFunctions {
 	public TextFunctions(GUI editor){
 		this.editor = editor;
 
-		edit = new Command[6];
+		edit = new Command[7];
 		edit[0] = new SaveCommand(editor, new Save(editor), new SaveAs(editor));
 		edit[1] = new CopyCommand(new Copy(editor));
 		edit[2] = new CutCommand(new Cut(editor));
@@ -28,6 +28,7 @@ public class TextFunctions {
 		edit[4] = new NewFileCommand(new NewFile(editor));
 		edit[5] = new HTMLCheckerCommand(new HTMLCheck(editor));
 		edit[6] = new SaveAsCommand(new SaveAs(editor));
+		//TODO open
 	}
 	
 	/*

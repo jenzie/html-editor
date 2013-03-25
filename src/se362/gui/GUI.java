@@ -59,7 +59,7 @@ public class GUI extends JFrame {
             FileWindow window = new FileWindow(this, startFile);
             windows.add(window);
         }
-        //TODO this.invoker = new TextFunctions(this);
+        this.invoker = new TextFunctions(this);
         
         this.clipboard = new Clipboard();
         
@@ -100,7 +100,7 @@ public class GUI extends JFrame {
         btnNew.setPreferredSize(new Dimension(22, 22));
         btnNew.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                newTab();
+                invoker.actionEvent(TextFunctions.NEW);
             }
         });
         iconPane.add(btnNew);
@@ -109,7 +109,7 @@ public class GUI extends JFrame {
         btnOpen.setPreferredSize(new Dimension(22, 22));
         btnOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                open();
+                //TODO invoker.actionEvent(TextFunctions.OPEN);
             }
         });
         iconPane.add(btnOpen);
@@ -118,7 +118,9 @@ public class GUI extends JFrame {
         btnSave.setPreferredSize(new Dimension(22, 22));
         btnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO save
+                invoker.actionEvent(TextFunctions.CHECK);
+                //TODO get result of check
+                invoker.actionEvent(TextFunctions.SAVE);
             }
         });
         iconPane.add(btnSave);
@@ -128,22 +130,38 @@ public class GUI extends JFrame {
         btnCloseTab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 closeSelectedTab();
+                //TODO Check unsaved?
             }
         });
         iconPane.add(btnCloseTab);
         
-        iconPane.add(new JLabel("    "));
+        iconPane.add(new JLabel("      "));
         
         JButton btnCut = new JButton(new ImageIcon(GUI.class.getResource("/cut.png")));
         btnCut.setPreferredSize(new Dimension(22, 22));
+        btnCut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                invoker.actionEvent(TextFunctions.CUT);
+            }
+        });
         iconPane.add(btnCut);
         
         JButton btnCopy = new JButton(new ImageIcon(GUI.class.getResource("/copy.png")));
         btnCopy.setPreferredSize(new Dimension(22, 22));
+        btnCopy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                invoker.actionEvent(TextFunctions.COPY);
+            }
+        });
         iconPane.add(btnCopy);
         
         JButton btnPaste = new JButton(new ImageIcon(GUI.class.getResource("/paste.png")));
         btnPaste.setPreferredSize(new Dimension(22, 22));
+        btnPaste.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                invoker.actionEvent(TextFunctions.PASTE);
+            }
+        });
         iconPane.add(btnPaste);
         
         JMenuBar menuBar = new JMenuBar();
@@ -153,9 +171,8 @@ public class GUI extends JFrame {
 
         JMenuItem mntmNew = new JMenuItem("New", new ImageIcon(GUI.class.getResource("/new.png")));
         mntmNew.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent arg0) {
-                newTab();
+                invoker.actionEvent(TextFunctions.NEW);
             }
         });
         fileMenu.add(mntmNew);
@@ -164,6 +181,7 @@ public class GUI extends JFrame {
         mntmOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 open();
+                //TODO command
             }
         });
         fileMenu.add(mntmOpen);
@@ -171,19 +189,29 @@ public class GUI extends JFrame {
         JMenuItem mntmSave = new JMenuItem("Save", new ImageIcon(GUI.class.getResource("/save.png")));
         mntmSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO save
+                invoker.actionEvent(TextFunctions.CHECK);
+                //TODO result of check
+                invoker.actionEvent(TextFunctions.SAVE);
             }
         });
         fileMenu.add(mntmSave);
         
         JMenuItem mntmSaveAs = new JMenuItem("Save As");
         fileMenu.add(mntmSaveAs);
+        mntmSaveAs.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                invoker.actionEvent(TextFunctions.CHECK);
+                //TODO result of check
+                invoker.actionEvent(TextFunctions.SAVEAS);
+            }
+        });
         getContentPane().add(tabbedPane, BorderLayout.CENTER);
         
         JMenuItem mntmCloseTab = new JMenuItem("Close current tab", new ImageIcon(GUI.class.getResource("/close.png")));
         mntmCloseTab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 closeSelectedTab();
+                //TODO unsaved?
             }
         });
         fileMenu.add(mntmCloseTab);
@@ -202,18 +230,39 @@ public class GUI extends JFrame {
         menuBar.add(editMenu);
         
         JMenuItem mntmCut = new JMenuItem("Cut", new ImageIcon(GUI.class.getResource("/cut.png")));
+        mntmCut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                invoker.actionEvent(TextFunctions.CUT);
+            }
+        });
         editMenu.add(mntmCut);
         
         JMenuItem mntmCopy = new JMenuItem("Copy", new ImageIcon(GUI.class.getResource("/copy.png")));
+        mntmCopy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                invoker.actionEvent(TextFunctions.COPY);
+            }
+        });
         editMenu.add(mntmCopy);
         
         JMenuItem mntmPaste = new JMenuItem("Paste", new ImageIcon(GUI.class.getResource("/paste.png")));
+        mntmPaste.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                invoker.actionEvent(TextFunctions.PASTE);
+            }
+        });
         editMenu.add(mntmPaste);
         
         JMenuItem mntmCheckHtml = new JMenuItem("Check HTML", new ImageIcon(GUI.class.getResource("/check.png")));
+        mntmCheckHtml.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                invoker.actionEvent(TextFunctions.CHECK);
+            }
+        });
         editMenu.add(mntmCheckHtml);
         
         JMenu insertMenu = new JMenu("Insert");
+        //TODO insert constructs
         menuBar.add(insertMenu);
         setVisible(true);
     }
