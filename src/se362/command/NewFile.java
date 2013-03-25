@@ -20,6 +20,9 @@ public class NewFile {
 		/*
 		 * Open new blank file
 		 */
+		
+		editor.newTab();
+		
 	}
 	
 }

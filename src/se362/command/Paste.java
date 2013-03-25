@@ -10,6 +10,7 @@ import se362.gui.GUI;
  */
 public class Paste {
 	private GUI editor;
+	private String text;
 	
 	public Paste(GUI editor){
 		this.editor = editor;
@@ -21,6 +22,8 @@ public class Paste {
 		 * insert it at current text location
 		 */
 		
+		text = editor.getClipboard().getText();
+		editor.getActiveFileWindow().insertText(text);
 	}
 	
 }

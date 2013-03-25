@@ -8,6 +8,7 @@ import se362.gui.GUI;
  */
 public class Copy {
 	private GUI editor;
+	private String text;
 	
 	public Copy(GUI editor){
 		this.editor = editor;
@@ -19,7 +20,8 @@ public class Copy {
 		 * Save it to the GUI Clipboard
 		 */
 		
-		
+		text = editor.getActiveFileWindow().getSelectedText();
+		editor.getClipboard().setText(text);
 		
 	}
 	

@@ -9,6 +9,7 @@ import se362.gui.GUI;
  */
 public class Cut {
 	private GUI editor;
+	String cut;
 	
 	public Cut(GUI editor){
 		this.editor = editor;
@@ -20,6 +21,8 @@ public class Cut {
 		 * Save text to GUI Clipboard
 		 * Remove text from TextArea
 		 */
+		cut = editor.getActiveFileWindow().cutSelectedText();
+		editor.getClipboard().setText(cut);
 	}
 	
 }
