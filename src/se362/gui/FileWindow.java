@@ -96,18 +96,6 @@ public class FileWindow extends JPanel{
 	
 	}
 
-    /** Save Method
-     * 
-     *  Calls HTMLCheck
-     *  Writes the file if check passes
-     * 
-     */
-	public void save(){
-	
-	//TODO: Figure out plan for sending content
-	
-	}
-
    /** Terminate Method
  	* What the program does upon closing
  	* 
@@ -152,5 +140,15 @@ public class FileWindow extends JPanel{
 		return currentFile;
 	}
 
-
+	/**
+	 * Returns all the text in the editor window
+	 * @return text
+	 */
+	public String getAllText() {
+	    return textArea.getText();
+	}
+	
+	public JTextArea getTextArea() {
+	    return textArea;
+	}
 }
