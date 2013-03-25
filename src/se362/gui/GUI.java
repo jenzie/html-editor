@@ -279,5 +279,21 @@ public class GUI extends JFrame {
         }
         return ext;
     }
+    
+    /**
+     * Get the Clipboard
+     * @return
+     */
+    public Clipboard getClipboard() {
+        return clipboard;
+    }
+    
+    /**
+     * Get the active editor window
+     * @return
+     */
+    public FileWindow getActiveFileWindow() {
+        return (FileWindow) tabbedPane.getSelectedComponent();
+    }
 
 }
