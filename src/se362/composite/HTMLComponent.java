@@ -4,6 +4,7 @@ import se362.HTMLConstructs;
 
 /**
  * @author Jenny Zhen, coffee@csh.rit.edu
+ * @author Chad Koppes, chadkoppes@gmail.com
  */
 
 /**
@@ -14,13 +15,15 @@ import se362.HTMLConstructs;
 public abstract class HTMLComponent {
 	private String name;
 	public boolean isClosed;
+	public HTMLComponent parent;
 
 	/**
 	 * Constructor.
 	 * @param tag	html tag that may be opening/closing.
 	 */
-	public HTMLComponent(String tag) {
+	public HTMLComponent(String tag, HTMLComponent parent) {
 		this.name = tag.toLowerCase(); // or to upper, since enums are uppercase
+		this.parent = parent;
 		this.isClosed = false;
 	}
 

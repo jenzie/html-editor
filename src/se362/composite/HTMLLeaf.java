@@ -2,6 +2,7 @@ package se362.composite;
 
 /**
  * @author Jenny Zhen, coffee@csh.rit.edu
+ * @author Chad Koppes, chadkoppes@gmail.com
  */
 
 /**
@@ -13,9 +14,10 @@ public class HTMLLeaf extends HTMLComponent{
 	/**
 	 * Constructor.
 	 * @param tag	html tag that may be opening/closing.
+	 * @param parent  reference to parent node for checking for complete tag structure.
 	 */
-	public HTMLLeaf(String tag) {
-		super(tag);
+	public HTMLLeaf(String tag, HTMLComponent parent) {
+		super(tag, parent);
 		super.isClosed = true;
 	}
 
