@@ -299,5 +299,13 @@ public class GUI extends JFrame {
     public FileWindow getActiveFileWindow() {
         return (FileWindow) tabbedPane.getSelectedComponent();
     }
+    
+    /**
+     * Get the file chooser for saving/opening
+     * @return filechooser
+     */
+    public JFileChooser getFileChooser() {
+        return fileChooser;
+    }
 
 }
