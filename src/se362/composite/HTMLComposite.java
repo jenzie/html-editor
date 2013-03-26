@@ -37,7 +37,7 @@ public class HTMLComposite extends HTMLComponent{
 	 * @return	true is tag was closed; false otherwise.
 	 */
 	public boolean isClosed() {
-		return super.isClosed();
+		return this.isClosed();
 	}
 
 	/**
@@ -56,7 +56,10 @@ public class HTMLComposite extends HTMLComponent{
 	 * @return	true if child was added successfully.
 	 */
 	public boolean add(HTMLComponent child) {
-		return super.add(child);
+		if (checkValidTag()) {
+			((HTMLComposite) this).addChild(child);
+			return true;
+		} return false;
 	}
 
 	/**
