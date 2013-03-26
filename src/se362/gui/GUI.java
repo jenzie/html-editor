@@ -37,6 +37,7 @@ public class GUI extends JFrame {
     
     private ArrayList<FileWindow> windows;
     private JTabbedPane tabbedPane;
+    private String text;
 
     /**
      * Launch the application.
@@ -271,12 +272,16 @@ public class GUI extends JFrame {
         //TODO insert constructs
         HTMLConstructs[] tags = HTMLConstructs.values();
         for(HTMLConstructs h : tags){
-        	JMenuItem item = new JMenuItem(h.getOpenTag());
+        	final JMenuItem item = new JMenuItem(h.name());
         	item.addActionListener(new ActionListener(){
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					//TODO Add to textArea
+					HTMLConstructs tag = HTMLConstructs.valueOf(item.getText());
+					text = tag.getOpenTag()+tag.getCloseTag();
+					invoker.actionEvent(TextFunctions.INSERT);
+					
 					
 				}
         		
@@ -320,6 +325,14 @@ public class GUI extends JFrame {
      */
     public Clipboard getClipboard() {
         return clipboard;
+    }
+    
+    /**
+     * Get the HTMLText
+     * @return
+     */
+    public String getText(){
+    	return text;
     }
     
     /**

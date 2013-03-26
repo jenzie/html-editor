@@ -37,7 +37,7 @@ public class TextFunctions {
 		edit[7] = new OpenCommand(new Open(editor));
 		//TODO edit[8] = new IndentAllCommand(indent);
 		//TODO edit[9] = new IndentSelectedCommand(indent);
-		//TODO edit[10] = new InsertCommand(new Insert(editor);
+		edit[10] = new InsertCommand(new Insert(editor));
 
 	}
 	
