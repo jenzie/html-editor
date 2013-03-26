@@ -19,15 +19,16 @@ public class TextFunctions {
 	//Constructor
 	public TextFunctions(GUI editor){
 		this.editor = editor;
+		SaveAs saveAs = new SaveAs(editor);
 
 		edit = new Command[7];
-		edit[0] = new SaveCommand(editor, new Save(editor), new SaveAs(editor));
+		edit[0] = new SaveCommand(editor, new Save(editor), saveAs);
 		edit[1] = new CopyCommand(new Copy(editor));
 		edit[2] = new CutCommand(new Cut(editor));
 		edit[3] = new PasteCommand(new Paste(editor));
 		edit[4] = new NewFileCommand(new NewFile(editor));
 		edit[5] = new HTMLCheckerCommand(new HTMLCheck(editor));
-		edit[6] = new SaveAsCommand(new SaveAs(editor));
+		edit[6] = new SaveAsCommand(saveAs);
 		//TODO open
 	}
 	
