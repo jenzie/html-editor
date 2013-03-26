@@ -3,12 +3,15 @@ package se362.composite;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import se362.HTMLConstructs;
 import se362.gui.GUI;
 
 /**
  * HTMLCheck.
  * For parsing file for HTML tags and building composite tree.
  * @author Chad Koppes, chadkoppes@gmail.com
+ * @author Jenny Zhen, coffee@csh.rit.edu
  */
 
 public class HTMLCheck {
@@ -53,9 +56,9 @@ public class HTMLCheck {
 				}
 			}
 			if(current.parent == null) {
-				return "success";
+				editor.setMessage(null);
 			} else {
-				return "fail"; 
+				editor.setMessage("HTML is not well-formed.");
 			}
 		}
 		
@@ -65,8 +68,11 @@ public class HTMLCheck {
 		 * @return	true if tag is valid html; false otherwise.
 		 */
 		private boolean checkValid(String tag) {
-			// if tag is valid
-			return true;
+			// check against list of valid tags; ignore upper/lowercase
+			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
+				if (enumTag.name().equalsIgnoreCase(tag))
+					return true;
+			} return false;
 		}
 		
 		/**
@@ -113,7 +119,7 @@ public class HTMLCheck {
 			String cleanTag = tagParse(tag);
 			
 			if(cleanTag.compareTo(current.getName()) != 0) {
-				//return error message!  TREE IS WRONG!
+				editor.setMessage("HTML is not well-formed.");
 			} else {
 				current = current.parent;
 			}
