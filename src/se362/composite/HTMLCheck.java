@@ -47,15 +47,20 @@ public class HTMLCheck {
 				tagList.add(matcher.group());
 			}
 			for(String tag : tagList) {
-				if(checkValid(tag) && (tag.startsWith("</"))) {
-					checkCloseTag(tag);
-				} else if (checkValid(tag) && !(tag.startsWith("</"))) {
-					addHTMLNode(tag);
-				} else {
+				System.out.println("ArrayList: " + tag);
+				if(!checkValid(tag)) {
 					tagList.remove(tag);
 				}
 			}
-			if(current.parent == null) {
+			for(String tag : tagList) {
+				System.out.println("TagList: " + tag);
+				if(tag.startsWith("</")) {
+					checkCloseTag(tag);
+				} else {
+					addHTMLNode(tag);
+				}
+			}
+			if(current == null) {
 				editor.setMessage(null);
 			} else {
 				editor.setMessage("HTML is not well-formed.");
@@ -68,11 +73,15 @@ public class HTMLCheck {
 		 * @return	true if tag is valid html; false otherwise.
 		 */
 		private boolean checkValid(String tag) {
+			System.out.println("checkValid() initiated");
 			// check against list of valid tags; ignore upper/lowercase
 			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
 				if (enumTag.name().equalsIgnoreCase(tag))
+					System.out.println("checkValid -> return true");
 					return true;
-			} return false;
+			}
+			System.out.println("checkValid -> return false");
+			return false;
 		}
 		
 		/**
