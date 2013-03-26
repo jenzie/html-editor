@@ -3,6 +3,10 @@ package se362.composite;
 import java.util.ArrayList;
 
 /**
+ * @author Jenny Zhen, coffee@csh.rit.edu
+*/
+
+/**
  * HTMLComposite
  * A html node that may have children, and have both an opening and closing tag.
  */
@@ -12,7 +16,8 @@ public class HTMLComposite extends HTMLComponent{
 	/**
 	 * Constructor.
 	 * @param tag	html tag that may be opening/closing.
-	 * @param parent reference to parent node for checking if closing tag is complete.
+	 * @param parent reference to parent node for checking if closing tag is
+	 *               complete.
 	 */
 	public HTMLComposite(String tag, HTMLComponent parent) {
 		super(tag, parent);
