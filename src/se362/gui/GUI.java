@@ -111,7 +111,7 @@ public class GUI extends JFrame {
         btnOpen.setPreferredSize(new Dimension(22, 22));
         btnOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                //TODO invoker.actionEvent(TextFunctions.OPEN);
+                invoker.actionEvent(TextFunctions.OPEN);
             }
         });
         iconPane.add(btnOpen);
@@ -185,7 +185,7 @@ public class GUI extends JFrame {
         JMenuItem mntmOpen = new JMenuItem("Open", new ImageIcon(GUI.class.getResource("/open.png")));
         mntmOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                //invoker.actionEvent(TextFunctions.OPEN);
+                invoker.actionEvent(TextFunctions.OPEN);
                 //TODO command
             }
         });
@@ -324,7 +324,7 @@ public class GUI extends JFrame {
     }
     
     public void open() {
-        //invoker.actionEvent(TextFunctions.OPEN);
+        invoker.actionEvent(TextFunctions.OPEN);
     }
     
     public void cut() {
