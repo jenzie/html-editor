@@ -45,7 +45,7 @@ public abstract class HTMLComponent {
 
 	/**
 	 * Checks to see if the given tag is a valid html tag.
-	 * (Used before adding node of the tag to the tree.
+	 * (Used before adding node of the tag to the tree.)
 	 * @return	true if tag is valid html; false otherwise.
 	 */
 	public boolean checkValidTag() {

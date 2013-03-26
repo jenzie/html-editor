@@ -1,7 +1,8 @@
 package se362.composite;
 
-import java.io.File;
-
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import se362.gui.GUI;
 
 /**
@@ -12,41 +13,81 @@ import se362.gui.GUI;
 
 public class HTMLCheck {
 	
-		GUI editor;
-		HTMLComponent current;
-		int count = 0;
-		String file;
+		private GUI editor;
+		private HTMLComponent current;
+		private int count = 0;
+		private String file; 
 
 		public HTMLCheck(GUI editor) {
 			this.editor = editor;
 		}
 		
-		public void doCheck() {
-		//	file = editor.getActiveFileWindow().getAllText();  //TODO: ensure getAllText() works on next push.
+		/**
+		 * doCheck()
+		 * Builds an ArrayList of all tags contained in the file document.
+		 * Iterates through the list to check A) if it is valid B) if it is 
+		 * an opening tag or closing tag.
+		 * Calls helper methods to check valid and to build the tree
+		 * based on whether it is opening or closing tag.
+		 * @return	String "success" if the tree builds successfully.
+		 * "fail" if not.
+		 */
+		
+		public String doCheck() {
+			file = editor.getActiveFileWindow().getAllText();
+			ArrayList<String> tagList = new ArrayList<String>();
+			Pattern pattern = Pattern.compile("(<.)(\\w+)(>)");
+			Matcher matcher = pattern.matcher(file);
 			
-			//run through each line of file
-			//when it encounters a tag
-			//call checkValid(), if the tag is invalid, continue parse, otherwise:
-			//if 'open' tag:
-			//addHTMLNode()
-			//if 'close' tag:
-			//checkCloseTag()
-			//at end of parse check current - if parent != null - then tree is wrong!
+			while (matcher.find()) {
+				System.out.println(matcher.group());
+				tagList.add(matcher.group());
+			}
+			for(String tag : tagList) {
+				if(checkValid(tag) && (tag.startsWith("</"))) {
+					checkCloseTag(tag);
+				} else if (checkValid(tag) && !(tag.startsWith("</"))) {
+					addHTMLNode(tag);
+				} else {
+					tagList.remove(tag);
+				}
+			}
+			if(current.parent == null) {
+				return "success";
+			} else {
+				return "fail"; 
+			}
 		}
 		
-		public boolean checkValid(String tag) {
+		/**
+		 * Checks to see if the given tag is a valid html tag.
+		 * (Used before adding node of the tag to the tree.
+		 * @return	true if tag is valid html; false otherwise.
+		 */
+		private boolean checkValid(String tag) {
 			// if tag is valid
 			return true;
 		}
 		
-		public String tagParse(String tag) {
+		/**
+		 * tagParse(String tag) takes a string representation of a tag
+		 * and strips off the "<", ">" and "/" characters.
+		 * @return	String tag without brackets.
+		 */
+		private String tagParse(String tag) {
 			tag.replace("<", "");
 			tag.replace(">", "");
 			tag.replace("/", "");
 			return tag;
 		}
 		
-		public void addHTMLNode(String tag) {
+		/**
+		 * addHTMLNode(String tag)
+		 * Takes a valid 'opening' tag and creates a node for it and connects
+		 * that node as a child to the current node.
+		 * If the node is the first node, it will set parent to 'null'.
+		 */
+		private void addHTMLNode(String tag) {
 			String cleanTag = tagParse(tag);
 			
 			if(count == 0) {
@@ -61,7 +102,14 @@ public class HTMLCheck {
 			}
 		}
 		
-		public void checkCloseTag(String tag) {
+		/**
+		 * Takes a valid 'closing' tag and checks to see if the parent
+		 * tag matches it.  If not, returns an error to the user and 
+		 * sets well-formed to false for the document.
+		 * If it does match, it sets the current to the parent node for
+		 * further processing.
+		 */
+		private void checkCloseTag(String tag) {
 			String cleanTag = tagParse(tag);
 			
 			if(cleanTag.compareTo(current.getName()) != 0) {
@@ -70,7 +118,4 @@ public class HTMLCheck {
 				current = current.parent;
 			}
 		}
-		
-		
-		
 }
