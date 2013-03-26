@@ -11,6 +11,10 @@ public class TextFunctions {
     public static final int NEW = 4;
     public static final int CHECK = 5;
     public static final int SAVEAS = 6;
+    public static final int OPEN = 7;
+    public static final int INDENTAll = 8;
+    public static final int INDENTSELECTED = 9;
+    public static final int INSERT = 10;
     
     private GUI editor;
 
@@ -20,8 +24,9 @@ public class TextFunctions {
 	public TextFunctions(GUI editor){
 		this.editor = editor;
 		SaveAs saveAs = new SaveAs(editor);
+		//TODO Indent indent = new Indent(editor)
 
-		edit = new Command[7];
+		edit = new Command[11];
 		edit[0] = new SaveCommand(editor, new Save(editor), saveAs);
 		edit[1] = new CopyCommand(new Copy(editor));
 		edit[2] = new CutCommand(new Cut(editor));
@@ -29,11 +34,16 @@ public class TextFunctions {
 		edit[4] = new NewFileCommand(new NewFile(editor));
 		edit[5] = new HTMLCheckerCommand(new HTMLCheck(editor));
 		edit[6] = new SaveAsCommand(saveAs);
-		//TODO open
+		edit[7] = new OpenCommand(new Open(editor));
+		//TODO edit[8] = new IndentAllCommand(indent);
+		//TODO edit[9] = new IndentSelectedCommand(indent);
+		//TODO edit[10] = new InsertCommand(new Insert(editor);
+
 	}
 	
 	/*
-	 * When a button is pushed or a dropdown item selected, execute the functionality for the option
+	 * When a button is pushed or a dropdown item selected
+	 * execute the functionality for the option
 	 */
 	public void actionEvent(int spot){
 		edit[spot].execute();
