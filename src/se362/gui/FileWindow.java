@@ -13,9 +13,12 @@ import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 @SuppressWarnings("serial")
 public class FileWindow extends JPanel{
+    private boolean saved;
     private GUI parent;
 	
 	private File currentFile;
@@ -24,6 +27,7 @@ public class FileWindow extends JPanel{
 	//Default Constructor
 	public FileWindow(GUI g){
 	    this.parent = g;
+	    this.saved = false;
 
 	    setLayout(new BorderLayout());
 	    textArea = new JTextArea();
@@ -35,6 +39,17 @@ public class FileWindow extends JPanel{
 	    add(scroll, BorderLayout.CENTER);
 	    textArea.setWrapStyleWord(true);
 	    textArea.setLineWrap(true);
+	    
+	    textArea.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent arg0) {
+            }
+            public void insertUpdate(DocumentEvent arg0) {
+                saved = false;
+            }
+            public void removeUpdate(DocumentEvent arg0) {
+                saved = false;
+            }
+	    });
 	    
         //Control Character commands
         textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "doSaveAction");
@@ -79,6 +94,7 @@ public class FileWindow extends JPanel{
 	//Constructor with given filename
 	public FileWindow(GUI g, File file) {
 	    this(g);
+	    this.saved = true;
 	    this.currentFile = file;
 	    try {
             textArea.read(new FileReader(file), null);
@@ -144,5 +160,9 @@ public class FileWindow extends JPanel{
 	
 	public JTextArea getTextArea() {
 	    return textArea;
+	}
+	
+	public boolean isSaved() {
+	    return saved;
 	}
 }
