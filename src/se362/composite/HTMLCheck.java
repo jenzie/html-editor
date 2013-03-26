@@ -36,7 +36,7 @@ public class HTMLCheck {
 		 * "fail" if not.
 		 */
 		
-		public String doCheck() {
+		public void doCheck() {
 			file = editor.getActiveFileWindow().getAllText();
 			ArrayList<String> tagList = new ArrayList<String>();
 			Pattern pattern = Pattern.compile("(<.)(\\w+)(>)");
