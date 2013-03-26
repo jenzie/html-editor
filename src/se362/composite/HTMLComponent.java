@@ -39,9 +39,7 @@ public abstract class HTMLComponent {
 	 * Checks to see if tag was properly closed.
 	 * @return	true is tag was closed; false otherwise.
 	 */
-	public boolean isClosed() {
-		return this.isClosed;
-	}
+	public abstract boolean isClosed();
 
 	/**
 	 * Checks to see if the given tag is a valid html tag.
@@ -62,10 +60,5 @@ public abstract class HTMLComponent {
 	 * @param child	node to add to parent node in tree structure.
 	 * @return	true if child was added successfully.
 	 */
-	public boolean add(HTMLComponent child) {
-		if (checkValidTag()) {
-			((HTMLComposite) this).addChild(child);
-			return true;
-		} return false;
-	}
+	public abstract boolean add(HTMLComponent child);
 }
