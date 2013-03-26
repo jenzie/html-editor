@@ -2,6 +2,7 @@ package se362.gui;
 
 import java.awt.BorderLayout;
 
+
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.filechooser.FileFilter;
 
+import se362.HTMLConstructs;
 import se362.command.TextFunctions;
 
 import java.awt.Dimension;
@@ -186,7 +188,6 @@ public class GUI extends JFrame {
         mntmOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 invoker.actionEvent(TextFunctions.OPEN);
-                //TODO command
             }
         });
         fileMenu.add(mntmOpen);
@@ -268,6 +269,20 @@ public class GUI extends JFrame {
         
         JMenu insertMenu = new JMenu("Insert");
         //TODO insert constructs
+        HTMLConstructs[] tags = HTMLConstructs.values();
+        for(HTMLConstructs h : tags){
+        	JMenuItem item = new JMenuItem(h.getOpenTag());
+        	item.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					//TODO Add to textArea
+					
+				}
+        		
+        	});
+        	insertMenu.add(item);
+        }
         menuBar.add(insertMenu);
         setVisible(true);
     }
