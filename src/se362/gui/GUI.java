@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
@@ -26,6 +27,7 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
+    String message;
 
     private JFileChooser fileChooser;
     private Clipboard clipboard;
@@ -120,6 +122,9 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 invoker.actionEvent(TextFunctions.CHECK);
                 //TODO get result of check
+                if(message != null) {
+                    JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);
+                }
                 invoker.actionEvent(TextFunctions.SAVE);
             }
         });
@@ -180,7 +185,7 @@ public class GUI extends JFrame {
         JMenuItem mntmOpen = new JMenuItem("Open", new ImageIcon(GUI.class.getResource("/open.png")));
         mntmOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                open();
+                //invoker.actionEvent(TextFunctions.OPEN);
                 //TODO command
             }
         });
@@ -268,18 +273,6 @@ public class GUI extends JFrame {
     }
     
     /**
-     * Prompts the user to select a file to open, then displays the file
-     */
-    public void open() {
-        int choice = fileChooser.showOpenDialog(this);
-        if(choice == JFileChooser.APPROVE_OPTION) {
-            open(fileChooser.getSelectedFile());
-        }
-        else {//Do nothing if cancelled
-        }
-    }
-    
-    /**
      * Given a file, adds the file to the view
      * @param file: the file to open
      */
@@ -288,33 +281,6 @@ public class GUI extends JFrame {
         windows.add(w);
         tabbedPane.add(w);
         tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
-    }
-    
-    /**
-     * Opens a new, empty tab
-     */
-    public void  newTab() {
-        FileWindow w = new FileWindow(this);
-        windows.add(w);
-        tabbedPane.add(w);
-        tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
-    }
-    
-    /**
-     * Closes the currently selected tab
-     */
-    public void closeSelectedTab() {
-        FileWindow w = (FileWindow) tabbedPane.getSelectedComponent();
-        if(w == null) return;
-        int i = tabbedPane.getSelectedIndex();
-        windows.remove(w);
-        tabbedPane.remove(i);
-        //TODO check for unsaved
-        //TODO HTML check
-    }
-    
-    public void close() {
-        //TODO close program
     }
     
     /**
@@ -356,5 +322,70 @@ public class GUI extends JFrame {
     public JFileChooser getFileChooser() {
         return fileChooser;
     }
+    
+    public void open() {
+        //invoker.actionEvent(TextFunctions.OPEN);
+    }
+    
+    public void cut() {
+        invoker.actionEvent(TextFunctions.CUT);
+    }
+    
+    public void copy() {
+        invoker.actionEvent(TextFunctions.COPY);
+    }
+    
+    public void paste() {
+        invoker.actionEvent(TextFunctions.PASTE);
+    }
+    
+    public void newFile() {
+        invoker.actionEvent(TextFunctions.NEW);
+    }
+    
+    public void save() {
+        invoker.actionEvent(TextFunctions.SAVE);
+    }
+    
+    public void saveAs() {
+        invoker.actionEvent(TextFunctions.SAVEAS);
+    }
+    
+    public void check() {
+        invoker.actionEvent(TextFunctions.CHECK);
+    }
+    
+    public void close() {
+        //TODO close program
+    }
+    
+    public void setMessage(String s) {
+        this.message = s;
+    }
+    
+    /**
+     * Opens a new, empty tab
+     */
+    public void  newTab() {
+        FileWindow w = new FileWindow(this);
+        windows.add(w);
+        tabbedPane.add(w);
+        tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
+    }
+    
+    /**
+     * Closes the currently selected tab
+     */
+    public void closeSelectedTab() {
+        FileWindow w = (FileWindow) tabbedPane.getSelectedComponent();
+        if(w == null) return;
+        int i = tabbedPane.getSelectedIndex();
+        windows.remove(w);
+        tabbedPane.remove(i);
+        //TODO check for unsaved
+        //TODO HTML check
+    }
+    
+    
 
 }

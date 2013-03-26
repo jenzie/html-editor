@@ -40,43 +40,37 @@ public class FileWindow extends JPanel{
         textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "doSaveAction");
         textArea.getActionMap().put("doSaveAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                //TODO save
-                System.out.println(e.getID());
+                parent.save();
             }
         });
         textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK), "doNewAction");
         textArea.getActionMap().put("doNewAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                //TODO new
-                System.out.println(e.getID());
+                parent.newFile();
             }
         });
         textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_DOWN_MASK), "doOpenAction");
         textArea.getActionMap().put("doOpenAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                //TODO open
-                System.out.println(e.getID());
+                parent.open();
             }
         });
         textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.CTRL_DOWN_MASK), "doCutAction");
         textArea.getActionMap().put("doCutAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                //TODO cut
-                System.out.println(e.getID());
+                parent.cut();
             }
         });
         textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK), "doCopyAction");
         textArea.getActionMap().put("doCopyAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                //TODO copy
-                System.out.println(e.getID());
+                parent.copy();
             }
         });
         textArea.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK), "doPasteAction");
         textArea.getActionMap().put("doPasteAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                //TODO paste
-                System.out.println(e.getID());
+                parent.paste();
             }
         });
 
