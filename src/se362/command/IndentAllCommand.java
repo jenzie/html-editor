@@ -16,7 +16,6 @@ public class IndentAllCommand implements Command {
 	@Override
 	public void execute() {
 		indent.indentAll();
-
 	}
 
 }

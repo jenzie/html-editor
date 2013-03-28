@@ -24,7 +24,7 @@ public class TextFunctions {
 	public TextFunctions(GUI editor){
 		this.editor = editor;
 		SaveAs saveAs = new SaveAs(editor);
-		//TODO Indent indent = new Indent(editor)
+		Indent indent = new Indent(editor);
 
 		edit = new Command[11];
 		edit[0] = new SaveCommand(editor, new Save(editor), saveAs);
@@ -35,8 +35,8 @@ public class TextFunctions {
 		edit[5] = new HTMLCheckerCommand(new HTMLCheck(editor));
 		edit[6] = new SaveAsCommand(saveAs);
 		edit[7] = new OpenCommand(new Open(editor));
-		//TODO edit[8] = new IndentAllCommand(indent);
-		//TODO edit[9] = new IndentSelectedCommand(indent);
+		edit[8] = new IndentAllCommand(indent);
+		edit[9] = new IndentSelectedCommand(indent);
 		edit[10] = new InsertCommand(new Insert(editor));
 
 	}

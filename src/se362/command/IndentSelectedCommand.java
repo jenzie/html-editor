@@ -17,7 +17,6 @@ public class IndentSelectedCommand implements Command {
 	@Override
 	public void execute() {
 		indent.indentSelected();
-
 	}
 
 }

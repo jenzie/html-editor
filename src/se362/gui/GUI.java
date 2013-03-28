@@ -360,6 +360,22 @@ public class GUI extends JFrame {
             }
         });
         editMenu.add(mntmCheckHtml);
+        
+        JMenuItem mntmIndent = new JMenuItem("Indent");
+        mntmIndent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                indentSelected();
+            }
+        });
+        editMenu.add(mntmIndent);
+        
+        JMenuItem mntmIndentAll = new JMenuItem("Indent All");
+        mntmIndentAll.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                indentAll();
+            }
+        });
+        editMenu.add(mntmIndentAll);
 
         //insert menu items
         JMenu insertMenu = new JMenu("Insert");
@@ -499,6 +515,20 @@ public class GUI extends JFrame {
      */
     public void check() {
         invoker.actionEvent(TextFunctions.CHECK);
+    }
+    
+    /**
+     * Calls indent all command in invoker
+     */
+    public void indentAll() {
+    	invoker.actionEvent(TextFunctions.INDENTAll);
+    }
+    
+    /**
+     * Calls indent selected command in invoker
+     */
+    public void indentSelected(){
+    	invoker.actionEvent(TextFunctions.INDENTSELECTED);
     }
 
     /**

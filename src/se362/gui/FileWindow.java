@@ -136,7 +136,23 @@ public class FileWindow extends JPanel {
     public String getSelectedText() {
         return textArea.getSelectedText();
     }
-
+    
+    /**
+     * Returns the starting position of the currently selected text
+     * @return
+     */
+    public int getSelectedStart() {
+    	return textArea.getSelectionStart();
+    }
+    
+    /**
+     * Returns the end position of the currently selected text
+     * @return
+     */
+    public int getSelectedEnd() {
+    	return textArea.getSelectionEnd();
+    }
+    
     /**
      * Deletes and returns the currently selected text
      * 
@@ -181,6 +197,14 @@ public class FileWindow extends JPanel {
      */
     public JTextArea getTextArea() {
         return textArea;
+    }
+    
+    /**
+     * Setter for the window's text area
+     * @param text
+     */
+    public void setTextArea(String text) {
+    	textArea.setText(text);
     }
 
     /**
