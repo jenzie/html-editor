@@ -484,6 +484,7 @@ public class GUI extends JFrame {
      */
     public void save() {
         invoker.actionEvent(TextFunctions.SAVE);
+        getActiveFileWindow().save();
     }
 
     /**

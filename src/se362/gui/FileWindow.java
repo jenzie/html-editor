@@ -42,6 +42,7 @@ public class FileWindow extends JPanel {
 
         textArea.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent arg0) {
+                saved = false;
             }
             public void insertUpdate(DocumentEvent arg0) {
                 saved = false;
@@ -114,6 +115,17 @@ public class FileWindow extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        textArea.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent arg0) {
+                saved = false;
+            }
+            public void insertUpdate(DocumentEvent arg0) {
+                saved = false;
+            }
+            public void removeUpdate(DocumentEvent arg0) {
+                saved = false;
+            }
+        });
     }
 
     /**
@@ -177,5 +189,12 @@ public class FileWindow extends JPanel {
      */
     public boolean isSaved() {
         return saved;
+    }
+    
+    /**
+     * Mark that this file has been saved
+     */
+    public void save() {
+        saved = true;
     }
 }
