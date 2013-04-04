@@ -28,8 +28,8 @@ public class HTMLCheck {
 		/**
 		 * doCheck()
 		 * Builds an ArrayList of all tags contained in the file document.
-		 * Iterates through the list to check A) if it is valid B) if it is 
-		 * an opening tag or closing tag.
+		 * Iterates through the list to check A) if it is a valid tag B) if it 
+		 * is an opening tag or closing tag.
 		 * Calls helper methods to check valid and to build the tree
 		 * based on whether it is opening or closing tag.
 		 * @return	String "success" if the tree builds successfully.
@@ -37,31 +37,52 @@ public class HTMLCheck {
 		 */
 		
 		public void doCheck() {
+			count = 0;
+			System.out.println("---- STARTING CHECK ----");
 			file = editor.getActiveFileWindow().getAllText();
 			ArrayList<String> tagList = new ArrayList<String>();
-			Pattern pattern = Pattern.compile("(<.)(\\w+)(>)");
+			Pattern pattern = Pattern.compile("((<)(\\w+)(>))|((</)(\\w+)(>))");
 			Matcher matcher = pattern.matcher(file);
 			
 			while (matcher.find()) {
-				System.out.println(matcher.group());
+//				System.out.println(matcher.group());
 				tagList.add(matcher.group());
 			}
 			for(String tag : tagList) {
-				System.out.println("ArrayList: " + tag);
+//				System.out.println("ArrayList: " + tag);
 				if(!checkValid(tag)) {
 					tagList.remove(tag);
 				}
 			}
 			for(String tag : tagList) {
-				System.out.println("TagList: " + tag);
+//				System.out.println("TagList: " + tag);
 				if(tag.startsWith("</")) {
-					checkCloseTag(tag);
+					if(count == 0) {
+						editor.setMessage("HTML is NOT well-formed");
+						break;
+					}
+					if(checkCloseTag(tag) == false) {
+						editor.setMessage("HTML is not well-formed.");
+						break;
+					}
 				} else {
 					addHTMLNode(tag);
 				}
 			}
-			if(current == null) {
-				editor.setMessage(null);
+			if(current != null) {
+				validTree();
+			} else {
+				editor.setMessage("HTML is not well-formed.");
+			}
+		}
+		/**
+		 * Checks to see if the current tree is a valid tree by checking to see
+		 * if the current node is the root node.
+		 * Sets the editor message appropriately.
+		 */
+		private void validTree() {
+			if(current.parent == null) {
+				editor.setMessage("HTML IS GREAT!");
 			} else {
 				editor.setMessage("HTML is not well-formed.");
 			}
@@ -73,15 +94,16 @@ public class HTMLCheck {
 		 * @return	true if tag is valid html; false otherwise.
 		 */
 		private boolean checkValid(String tag) {
-			System.out.println("checkValid() initiated");
-			// check against list of valid tags; ignore upper/lowercase
-			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
-				if (enumTag.name().equalsIgnoreCase(tag))
-					System.out.println("checkValid -> return true");
+//			System.out.println("checkValid() initiated");
+//			// check against list of valid tags; ignore upper/lowercase
+//			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
+//				if (enumTag.name().equalsIgnoreCase(tag)) {
+//					System.out.println("checkValid -> return true");
 					return true;
-			}
-			System.out.println("checkValid -> return false");
-			return false;
+//				}
+//			}
+//			System.out.println("checkValid -> return false");
+//			return false;
 		}
 		
 		/**
@@ -90,10 +112,15 @@ public class HTMLCheck {
 		 * @return	String tag without brackets.
 		 */
 		private String tagParse(String tag) {
-			tag.replace("<", "");
-			tag.replace(">", "");
-			tag.replace("/", "");
-			return tag;
+			//System.out.println("Input tag: " + tag);
+			String cleanTag1;
+			String cleanTag2;
+			String cleanTag3;
+			cleanTag1 = tag.replace("<", "");
+			cleanTag2 = cleanTag1.replace(">", "");
+			cleanTag3 = cleanTag2.replace("/", "");
+			//System.out.println("Clean tag: " + cleanTag3);
+			return cleanTag3;
 		}
 		
 		/**
@@ -106,13 +133,16 @@ public class HTMLCheck {
 			String cleanTag = tagParse(tag);
 			
 			if(count == 0) {
+				//System.out.println("ROOT NODE");
 				HTMLComponent newNode = new HTMLComposite(cleanTag, null);
 				current = newNode;
+				System.out.println("Adding Root node: " + current.getName());
 				count++;
 			} else {
 				HTMLComponent newNode = new HTMLComposite(cleanTag, current);
 				current.add(newNode);
 				current = newNode;
+				System.out.println("Adding Node: " + current.getName());
 				count++;
 			}
 		}
@@ -124,13 +154,22 @@ public class HTMLCheck {
 		 * If it does match, it sets the current to the parent node for
 		 * further processing.
 		 */
-		private void checkCloseTag(String tag) {
+		
+		private boolean checkCloseTag(String tag) {
 			String cleanTag = tagParse(tag);
-			
+			if(count == 0)
+				return false;
+			System.out.println("Closing Tag Found: " + cleanTag + " ,Current: " + current.getName());	
 			if(cleanTag.compareTo(current.getName()) != 0) {
-				editor.setMessage("HTML is not well-formed.");
+				System.out.println("Closing tag does not match current.  Fail.");
+				return false;
+				//editor.setMessage("HTML is NOT well-formed.");
 			} else {
-				current = current.parent;
+				if(current.parent != null) {
+					current = current.parent;
+				}
+				System.out.println("Closing tag matches current, new current: " + current.getName());
+				return true;
 			}
 		}
 }
