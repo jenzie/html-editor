@@ -17,5 +17,6 @@ public class HTMLCheckTest extends TestCase {
 		Assert.assertTrue(HTMLCheck.checkValid("<html>"));
 		Assert.assertTrue(HTMLCheck.checkValid("<table>"));
 		Assert.assertFalse(HTMLCheck.checkValid("<foo>"));
+		Assert.assertTrue(HTMLCheck.checkValid("</html>"));
 	}
 }
