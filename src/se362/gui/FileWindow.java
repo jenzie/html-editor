@@ -153,16 +153,6 @@ public class FileWindow extends JPanel {
     	return textArea.getSelectionEnd();
     }
     
-    /**
-     * Deletes and returns the currently selected text
-     * 
-     * @return text
-     */
-    public String cutSelectedText() {
-        String s = textArea.getSelectedText();
-        textArea.cut();
-        return s;
-    }
 
     /**
      * Inserts the given text into the text area at cursor position
