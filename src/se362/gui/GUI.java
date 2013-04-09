@@ -26,6 +26,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  * The primary GUI for the HTML Editor program
@@ -90,7 +93,24 @@ public class GUI extends JFrame {
             }
         });
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowListener() {
+            public void windowActivated(WindowEvent arg0) {
+            }
+            public void windowClosed(WindowEvent arg0) {
+            }
+            public void windowClosing(WindowEvent arg0) {
+                close();
+            }
+            public void windowDeactivated(WindowEvent arg0) {
+            }
+            public void windowDeiconified(WindowEvent arg0) {
+            }
+            public void windowIconified(WindowEvent arg0) {                
+            }
+            public void windowOpened(WindowEvent arg0) {
+            }
+        });
         setBounds(100, 100, 870, 473);
 
         tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -356,7 +376,11 @@ public class GUI extends JFrame {
                 GUI.class.getResource("/check.png")));
         mntmCheckHtml.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                message = null;
                 check();
+                if(message != null) {
+                    JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         editMenu.add(mntmCheckHtml);
@@ -379,7 +403,7 @@ public class GUI extends JFrame {
 
         //insert menu items
         JMenu insertMenu = new JMenu("Insert");
-        // TODO double check
+        // TODO Insert for a, img, table/list
         HTMLConstructs[] tags = HTMLConstructs.values();
         for (HTMLConstructs h : tags) {
             final JMenuItem item = new JMenuItem(h.name());
@@ -536,7 +560,6 @@ public class GUI extends JFrame {
      * and saving if selected
      */
     public void close() {
-        // TODO close program
         boolean close = true;
         for (FileWindow w : windows) {
             tabbedPane.setSelectedComponent(w);

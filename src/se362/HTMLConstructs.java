@@ -36,7 +36,10 @@ public enum HTMLConstructs {
 	TH("<th>", "</th>"),
 	FORM("<form>", "</form>"),
 	FRAMESET("<frameset>", "</frameset>"),
-	NOFRAMES("<noframes>", "</noframes>"),;
+	NOFRAMES("<noframes>", "</noframes>"),
+	
+	a("<a ", "href=", "</a>"),
+	img("<img ", "src=", "</img>");
 
 	/**
 	BR("<br>"), DT("<dt>"), DD("<dd>"), HR("<hr>"), FRAME("<frame>"),
@@ -45,6 +48,7 @@ public enum HTMLConstructs {
 
     private final String openTag;
     private final String closeTag;
+    private final String param;
 
 	/**
 	 * Constructor.
@@ -53,6 +57,19 @@ public enum HTMLConstructs {
 	 */
     HTMLConstructs(String open, String close) {
         this.openTag = open;
+        this.closeTag = close;
+        this.param = null;
+    }
+    
+    /**
+     * 
+     * @param open
+     * @param param
+     * @param close
+     */
+    HTMLConstructs(String open, String param, String close) {
+        this.openTag = open;
+        this.param = param;
         this.closeTag = close;
     }
 
