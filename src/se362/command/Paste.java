@@ -23,7 +23,7 @@ public class Paste {
 		 */
 		
 		text = editor.getClipboard().getText();
-		editor.getActiveFileWindow().insertText(text);
+		editor.getActiveFileWindow().getTextArea().insert(text, editor.getActiveFileWindow().getTextArea().getSelectionStart());
 	}
 	
 }

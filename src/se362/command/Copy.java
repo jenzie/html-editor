@@ -20,7 +20,7 @@ public class Copy {
 		 * Save it to the GUI Clipboard
 		 */
 		
-		text = editor.getActiveFileWindow().getSelectedText();
+		text = editor.getActiveFileWindow().getTextArea().getSelectedText();
 		editor.getClipboard().setText(text);
 		
 	}
