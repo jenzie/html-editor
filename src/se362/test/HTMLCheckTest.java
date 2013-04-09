@@ -3,7 +3,6 @@ package se362.test;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 import se362.composite.HTMLCheck;
-import se362.gui.GUI;
 
 /**
  * @author: Jenny Zhen; jenz.rit@gmail.com
