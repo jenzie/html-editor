@@ -93,17 +93,17 @@ public class HTMLCheck {
 		 * (Used before adding node of the tag to the tree.
 		 * @return	true if tag is valid html; false otherwise.
 		 */
-		private boolean checkValid(String tag) {
-//			System.out.println("checkValid() initiated");
-//			// check against list of valid tags; ignore upper/lowercase
-//			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
-//				if (enumTag.name().equalsIgnoreCase(tag)) {
-//					System.out.println("checkValid -> return true");
+		public boolean checkValid(String tag) {
+			System.out.println("checkValid() initiated");
+			// check against list of valid tags; ignore upper/lowercase
+			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
+				if (enumTag.getOpenTag().equalsIgnoreCase(tag)) {
+					System.out.println("checkValid -> return true");
 					return true;
-//				}
-//			}
-//			System.out.println("checkValid -> return false");
-//			return false;
+				}
+			}
+			System.out.println("checkValid -> return false");
+			return false;
 		}
 		
 		/**
