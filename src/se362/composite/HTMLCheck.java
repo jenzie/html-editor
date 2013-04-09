@@ -91,9 +91,10 @@ public class HTMLCheck {
 		/**
 		 * Checks to see if the given tag is a valid html tag.
 		 * (Used before adding node of the tag to the tree.
+		 * For testing purposes, it is public and static.
 		 * @return	true if tag is valid html; false otherwise.
 		 */
-		public boolean checkValid(String tag) {
+		public static boolean checkValid(String tag) {
 			System.out.println("checkValid() initiated");
 			// check against list of valid tags; ignore upper/lowercase
 			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
