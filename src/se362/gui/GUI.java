@@ -605,7 +605,7 @@ public class GUI extends JFrame {
     /**
      * Method for setting dialog messages used as return for HTML check
      * 
-     * @param String
+     * @param s
      *            : message to set to
      */
     public void setMessage(String s) {
