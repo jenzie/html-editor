@@ -401,7 +401,7 @@ public class GUI extends JFrame {
         });
         editMenu.add(mntmIndentAll);
         
-        JMenuItem mntmWordWrap = new JMenuItem("Toggle Word Wrap");
+        JMenuItem mntmWordWrap = new JMenuItem("Toggle Line Wrap");
         mntmWordWrap.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent e) {
         		toggleWordWrap();
