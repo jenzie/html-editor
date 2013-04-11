@@ -95,11 +95,24 @@ public class HTMLCheck {
 		 * @return	true if tag is valid html; false otherwise.
 		 */
 		public static boolean checkValid(String tag) {
+			String open, arg;
 			System.out.println("checkValid() initiated");
-			System.out.println("Tag: " + tag);
+
 			// check against list of valid tags; ignore upper/lowercase
 			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
-				if (enumTag.getOpenTag().equalsIgnoreCase(tag)) {
+				if(enumTag.getArgument() != null) {
+					open = tag.substring(0, enumTag.getOpenTag().length());
+					if(open.equalsIgnoreCase(enumTag.getOpenTag())) {
+						arg = tag.substring(enumTag.getOpenTag().length());
+						if(enumTag.getArgument().equalsIgnoreCase(arg)) {
+							System.out.println("checkValid -> return true");
+							return true;
+						}
+						System.out.println("checkValid -> return false");
+						return false;
+					}
+				} else if (enumTag.getOpenTag().equalsIgnoreCase(tag) ||
+						enumTag.getCloseTag().equalsIgnoreCase(tag)) {
 					System.out.println("checkValid -> return true");
 					return true;
 				}
