@@ -96,6 +96,7 @@ public class HTMLCheck {
 		 */
 		public static boolean checkValid(String tag) {
 			System.out.println("checkValid() initiated");
+			System.out.println("Tag: " + tag);
 			// check against list of valid tags; ignore upper/lowercase
 			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
 				if (enumTag.getOpenTag().equalsIgnoreCase(tag)) {
