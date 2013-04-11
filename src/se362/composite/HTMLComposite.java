@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * A html node that may have children, and have both an opening and closing tag.
  */
 public class HTMLComposite extends HTMLComponent{
-	private ArrayList<HTMLComponent> children;
+	//public ArrayList<HTMLComponent> children;
 
 	/**
 	 * Constructor.
@@ -19,9 +19,9 @@ public class HTMLComposite extends HTMLComponent{
 	 * @param parent reference to parent node for checking if closing tag is
 	 *               complete.
 	 */
-	public HTMLComposite(String tag, HTMLComponent parent) {
-		super(tag, parent);
-		this.children = new ArrayList<HTMLComponent>();
+	public HTMLComposite(String tag, String closeTag, HTMLComponent parent) {
+		super(tag, closeTag, parent);
+		//super.children = new ArrayList<HTMLComponent>();
 	}
 
 	/**
@@ -32,6 +32,14 @@ public class HTMLComposite extends HTMLComponent{
 		return super.getName();
 	}
 
+	/**
+	 * Getter for close tag value.
+	 * @return	the html close tag value associated.
+	 */
+	public String getCloseTag() {
+		return super.getCloseTag();
+	}
+	
 	/**
 	 * Checks to see if tag was properly closed.
 	 * @return	true is tag was closed; false otherwise.
@@ -68,6 +76,6 @@ public class HTMLComposite extends HTMLComponent{
 	 * @return	true if child was added.
 	 */
 	public boolean addChild(HTMLComponent child) {
-		return this.children.add(child);
+		return super.children.add(child);
 	}
 }

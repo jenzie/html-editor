@@ -17,8 +17,8 @@ public class HTMLLeaf extends HTMLComponent{
 	 * @param parent  reference to parent node for checking for complete
 	 *                tag structure.
 	 */
-	public HTMLLeaf(String tag, HTMLComponent parent) {
-		super(tag, parent);
+	public HTMLLeaf(String tag, String closeTag, HTMLComponent parent) {
+		super(tag, "", parent);
 		super.isClosed = true;
 	}
 
