@@ -400,6 +400,14 @@ public class GUI extends JFrame {
             }
         });
         editMenu.add(mntmIndentAll);
+        
+        JMenuItem mntmWordWrap = new JMenuItem("Toggle Word Wrap");
+        mntmWordWrap.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        		toggleWordWrap();
+        	}
+        });
+        editMenu.add(mntmWordWrap);
 
         //insert menu items
         JMenu insertMenu = new JMenu("Insert");
@@ -512,6 +520,18 @@ public class GUI extends JFrame {
         invoker.actionEvent(TextFunctions.PASTE);
     }
 
+    /**
+     * Toggles the active window's line wrap status
+     */
+    public void toggleWordWrap() {
+    	if (getActiveFileWindow().getTextArea().getLineWrap() == false){
+    		getActiveFileWindow().getTextArea().setLineWrap(true);
+    	}
+    	else if (getActiveFileWindow().getTextArea().getLineWrap() == true){
+    		getActiveFileWindow().getTextArea().setLineWrap(false);
+    	}
+    }
+    
     /**
      * calls new command in invoker
      */
