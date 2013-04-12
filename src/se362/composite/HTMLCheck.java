@@ -92,7 +92,7 @@ public class HTMLCheck {
 				// unless specific handling has prevented getting to here, simply output the segment as is:
 				//writer.write(segment.toString());
 			}
-			buildTree(current);
+			System.out.println(current.getText());
 			
 			
 			
@@ -267,7 +267,6 @@ public class HTMLCheck {
 		 */
 		
 		private boolean checkCloseTag(String tag) {
-			//String cleanTag = tagParse(tag);
 			if(count == 0)
 				return false;
 //			System.out.println("Closing Tag Found: " + cleanTag + " ,Current: " + current.getName());	
@@ -277,7 +276,8 @@ public class HTMLCheck {
 				//editor.setMessage("HTML is NOT well-formed.");
 			} else {
 				if(current.parent != null) {
-					current.setCloseTag("</" + tag + ">");
+					System.out.println("GETTING HERE");
+					current.setCloseTag(tag);
 					current = current.parent;
 				}
 //				System.out.println("Closing tag matches current, new current: " + current.getName());

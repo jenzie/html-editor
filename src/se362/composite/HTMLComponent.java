@@ -27,7 +27,7 @@ public abstract class HTMLComponent {
 	 */
 	public HTMLComponent(String tag, String closeTag, HTMLComponent parent) {
 		this.name = tag; // or to upper, since enums are uppercase
-		this.closeTag = closeTag;
+		this.closeTag = tag;
 		this.parent = parent;
 		this.isClosed = false;
 	}
@@ -50,10 +50,9 @@ public abstract class HTMLComponent {
 	
 	/**
 	 * Setter for close tag value.
-	 * @return	the html close tag value associated.
 	 */
-	public String setCloseTag(String closeTag) {
-		return this.closeTag;
+	public void setCloseTag(String closeTag) {
+		 this.closeTag = closeTag;
 	}
 	
 	/**
@@ -74,6 +73,8 @@ public abstract class HTMLComponent {
 				return true;
 		} return false;
 	}
+	
+	public abstract String getText();
 
 	/**
 	 * Attempts to add a child to this parent node, if and only if, the child

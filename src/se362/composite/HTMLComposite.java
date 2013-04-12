@@ -78,4 +78,14 @@ public class HTMLComposite extends HTMLComponent{
 	public boolean addChild(HTMLComponent child) {
 		return super.children.add(child);
 	}
+	
+	public String getText() {
+		String x = "<" + this.getName() + ">\n";
+		for(HTMLComponent h : children) {
+			x += "    " + h.getText() + 
+					'\n';
+		}
+		x += "   </" + getCloseTag() + ">\n";
+		return x;
+	}
 }

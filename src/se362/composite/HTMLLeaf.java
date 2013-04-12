@@ -55,4 +55,8 @@ public class HTMLLeaf extends HTMLComponent{
 	public boolean add(HTMLComponent node) {
 		return false;
 	}
+	
+	public String getText() {
+		return this.getName();
+	}
 }
