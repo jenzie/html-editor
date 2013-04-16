@@ -172,11 +172,9 @@ public class GUI extends JFrame {
                 FileWindow w = getActiveFileWindow();
                 if (!w.isSaved()) {
                     int choice = JOptionPane.showConfirmDialog(null,
-                            "File unsaved. Discard changes?", "",
+                            "File unsaved. Save changes before closing?", "",
                             JOptionPane.YES_NO_CANCEL_OPTION);
                     if (choice == JOptionPane.YES_OPTION) {
-                        closeSelectedTab();
-                    } else if (choice == JOptionPane.NO_OPTION) {
                         message = null;
                         check();
                         if (message != null) {
@@ -192,6 +190,8 @@ public class GUI extends JFrame {
                             save();
                             closeSelectedTab();
                         }
+                    } else if (choice == JOptionPane.NO_OPTION) {
+                        closeSelectedTab();
                     }
                 } else {
                     closeSelectedTab();
@@ -202,6 +202,16 @@ public class GUI extends JFrame {
 
         iconPane.add(new JLabel("      "));//For spacing
 
+        JButton btnUndo = new JButton(new ImageIcon(GUI.class.getResource("/undo.png")));
+        btnUndo.setPreferredSize(new Dimension(22,22));
+        btnUndo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                undo();
+            }
+        });
+        iconPane.add(btnUndo);
+
+        iconPane.add(new JLabel("      "));//For spacing
         JButton btnCut = new JButton(new ImageIcon(
                 GUI.class.getResource("/cut.png")));
         btnCut.setPreferredSize(new Dimension(22, 22));
@@ -302,11 +312,9 @@ public class GUI extends JFrame {
                 FileWindow w = getActiveFileWindow();
                 if (!w.isSaved()) {
                     int choice = JOptionPane.showConfirmDialog(null,
-                            "File unsaved. Discard changes?", "",
+                            "File unsaved. Save changes before closing?", "",
                             JOptionPane.YES_NO_CANCEL_OPTION);
                     if (choice == JOptionPane.YES_OPTION) {
-                        closeSelectedTab();
-                    } else if (choice == JOptionPane.NO_OPTION) {
                         message = null;
                         check();
                         if (message != null) {
@@ -322,6 +330,8 @@ public class GUI extends JFrame {
                             save();
                             closeSelectedTab();
                         }
+                    } else if (choice == JOptionPane.NO_OPTION) {
+                        closeSelectedTab();
                     }
                 } else {
                     closeSelectedTab();
@@ -343,6 +353,14 @@ public class GUI extends JFrame {
         //Edit menu items
         JMenu editMenu = new JMenu("Edit");
         menuBar.add(editMenu);
+        
+        JMenuItem mntmUndo = new JMenuItem("Undo", new ImageIcon(GUI.class.getResource("/undo.png")));
+        mntmUndo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                undo();
+            }
+        });
+        editMenu.add(mntmUndo);
 
         JMenuItem mntmCut = new JMenuItem("Cut", new ImageIcon(
                 GUI.class.getResource("/cut.png")));
@@ -568,6 +586,13 @@ public class GUI extends JFrame {
      */
     public void saveAs() {
         invoker.actionEvent(TextFunctions.SAVEAS);
+    }
+    
+    /**
+     * Calls the Undo command in invoker
+     */
+    public void undo() {
+        invoker.actionEvent(TextFunctions.UNDO);
     }
 
     /**

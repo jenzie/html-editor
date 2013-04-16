@@ -54,6 +54,8 @@ public class LinkView extends JFrame{
         menu.add(refresh);
         
         setJMenuBar(menu);
+        
+        
         setVisible(true);
     }
     
