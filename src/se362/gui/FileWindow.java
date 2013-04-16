@@ -16,6 +16,10 @@ import javax.swing.KeyStroke;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import se362.composite.HTMLComponent;
+import se362.memento.FileWindowCaretaker;
+import se362.memento.FileWindowMemento;
+
 @SuppressWarnings("serial")
 public class FileWindow extends JPanel {
     private boolean saved;
@@ -23,11 +27,16 @@ public class FileWindow extends JPanel {
 
     private File currentFile;
     private JTextArea textArea;
+    
+    private HTMLComponent root;
+    private FileWindowCaretaker caretaker;
 
     // Default Constructor
     public FileWindow(GUI g) {
         this.parent = g;
         this.saved = false;
+        
+        this.caretaker = new FileWindowCaretaker();
 
         setLayout(new BorderLayout());
         textArea = new JTextArea();
@@ -210,5 +219,35 @@ public class FileWindow extends JPanel {
      */
     public void save() {
         saved = true;
+    }
+    
+    /**
+     * Set the fileWindow's root node to the given node
+     * @param node: the new root node
+     */
+    public void setRootNode(HTMLComponent node) {
+        this.root = node;
+    }
+    
+    /**
+     * Set this fileWindow's state given a momento
+     * @param memento: previous state to restore to
+     */
+    private void setState(FileWindowMemento memento) {
+        
+    }
+    
+    /**
+     * Return this fileWindow to the previous state
+     */
+    public void undo() {
+        setState(caretaker.retrieveMemento());
+    }
+    
+    /**
+     * Save the current state as a momento and give it to the caretaker
+     */
+    public void saveState() {
+        caretaker.addMemento(new FileWindowMemento(root, saved));
     }
 }
