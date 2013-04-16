@@ -67,80 +67,24 @@ public class HTMLCheck {
 						}
 					}
 //					System.out.println(tag.getName());
-					// HANDLE TAG
-					// Uncomment the following line to ensure each tag is valid XML:
-					// writer.write(tag.tidy()); continue;
 				} else if (segment instanceof CharacterReference) {
 					CharacterReference characterReference = (CharacterReference)segment;
 					System.out.println(characterReference.getCharacterReferenceString());
-					// HANDLE CHARACTER REFERENCE
-					// Uncomment the following line to decode all character references instead of copying them verbatim:
-					// characterReference.appendCharTo(writer); continue;
 				} else {
 					if(!segment.isWhiteSpace()) {
 						addLeafNode(segment.toString());
 //						System.out.println("TEXT: " + segment.toString());
 					}
-					// HANDLE PLAIN TEXT
 				}
 				if(current != null) {
 					validTree();	
 				} else {
 					editor.setMessage("HTML is not well-formed.");
-					return null;
+					editor.getActiveFileWindow().setRootNode(null);
 				}
-				
-			
-				// unless specific handling has prevented getting to here, simply output the segment as is:
-				//writer.write(segment.toString());
 			}
 			System.out.println(current.getText());
-			return current;
-			
-			
-			
-//			count = 0;
-//			System.out.println("---- STARTING CHECK ----");
-//			file = editor.getActiveFileWindow().getAllText();
-//			Source sourceFile = new Source(file);
-//			List<Element> listOfElements = sourceFile.getAllElements();
-//			for(int i = 0; i < listOfElements.size(); i++) {
-//				System.out.println("NEW STUFF:" + listOfElements.get(i));
-//			}
-//			ArrayList<String> tagList = new ArrayList<String>();
-//			Pattern pattern = Pattern.compile("((<)(\\w+)(>))|((</)(\\w+)(>))|((>)(\\w+)(<))");
-//			Matcher matcher = pattern.matcher(file);
-//			
-//			while (matcher.find()) {
-////				System.out.println(matcher.group());
-//				tagList.add(matcher.group());
-//			}
-//			for(String tag : tagList) {
-////				System.out.println("ArrayList: " + tag);
-//				if(!checkValid(tag)) {
-//					tagList.remove(tag);
-//				}
-//			}
-//			for(String tag : tagList) {
-////				System.out.println("TagList: " + tag);
-//				if(tag.startsWith("</")) {
-//					if(count == 0) {
-//						editor.setMessage("HTML is NOT well-formed");
-//						break;
-//					}
-//					if(checkCloseTag(tag) == false) {
-//						editor.setMessage("HTML is not well-formed.");
-//						break;
-//					}
-//				} else {
-//					addHTMLNode(tag);
-//				}
-//			}
-//			if(current != null) {
-//				validTree();
-//			} else {
-//				editor.setMessage("HTML is not well-formed.");
-//			}
+			editor.getActiveFileWindow().setRootNode(current);
 		}
 		
 		private void buildTree(HTMLComponent rootNode) {
