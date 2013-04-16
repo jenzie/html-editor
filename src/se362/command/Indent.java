@@ -22,32 +22,37 @@ public class Indent {
 		if (editor.getActiveFileWindow().getSelectedText() != null){
 			String selected = editor.getActiveFileWindow().getSelectedText();
 			selected = selected.replaceAll("\n", "\n" + spaces);
-			int start = editor.getActiveFileWindow().getTextArea().getSelectionStart();
-			int end = editor.getActiveFileWindow().getTextArea().getSelectionEnd();
+			int start = editor.getActiveFileWindow().
+					getTextArea().getSelectionStart();
+			int end = editor.getActiveFileWindow().
+					getTextArea().getSelectionEnd();
 	    
-			editor.getActiveFileWindow().getTextArea().replaceRange(selected, start, end);
+			editor.getActiveFileWindow().getTextArea().
+					replaceRange(selected, start, end);
 			
 			int newLine = editor.getActiveFileWindow()
 					.getAllText().indexOf("\n");
 			
 			if (start < newLine){
-				appendText();
+				prependText();
 			}
 			else if(newLine == -1){
-				appendText();
+				prependText();
 			}
 		}
 		else{
-			int cursor = editor.getActiveFileWindow().getTextArea().getCaretPosition();
+			int cursor = editor.getActiveFileWindow().
+					getTextArea().getCaretPosition();
 			
 			String subString = editor.getActiveFileWindow().getTextArea()
 					.getText().substring(0, cursor);
 			Integer index = subString.lastIndexOf("\n");
 			if (index != -1){
-				editor.getActiveFileWindow().getTextArea().replaceRange("\n" + spaces, index, index + 1);
+				editor.getActiveFileWindow().getTextArea().
+						replaceRange("\n" + spaces, index, index + 1);
 			}
 			else{
-				appendText();
+				prependText();
 			}
 		}
 	}
@@ -70,8 +75,7 @@ public class Indent {
 		this.spacing = spacing;
 	}
 	
-	private void appendText()
-	{
+	private void prependText(){
 		String spaces = "";
 		for (int x = 0; x<spacing; x++){
 			spaces = spaces + " ";
