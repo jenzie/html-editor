@@ -26,7 +26,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -411,18 +410,35 @@ public class GUI extends JFrame {
 
         //insert menu items
         JMenu insertMenu = new JMenu("Insert");
-        // TODO Insert for a, img, table/list
+        // TODO Insert for table/list
+        JMenu withArguments = new JMenu("Constructs with Arguments");
+        insertMenu.add(withArguments);
+        
         HTMLConstructs[] tags = HTMLConstructs.values();
         for (HTMLConstructs h : tags) {
-            final JMenuItem item = new JMenuItem(h.name());
-            item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent arg0) {
-                    HTMLConstructs tag = HTMLConstructs.valueOf(item.getText());
-                    text = tag.getOpenTag() + tag.getCloseTag();
-                    invoker.actionEvent(TextFunctions.INSERT);
-                }
-            });
-            insertMenu.add(item);
+            if(h.getArgument() != null) {
+                final JMenuItem item = new JMenuItem(h.name());
+                item.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                        HTMLConstructs tag = HTMLConstructs.valueOf(item.getText());
+                        String arg = "\"" + JOptionPane.showInputDialog("") + "\"";
+                        text = tag.getOpenTag() + tag.getArgument() + arg + ">" + tag.getCloseTag();
+                        invoker.actionEvent(TextFunctions.INSERT);
+                    }
+                });
+                withArguments.add(item);
+            }
+            else {
+                final JMenuItem item = new JMenuItem(h.name());
+                item.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                        HTMLConstructs tag = HTMLConstructs.valueOf(item.getText());
+                        text = tag.getOpenTag() + tag.getCloseTag();
+                        invoker.actionEvent(TextFunctions.INSERT);
+                    }
+                });
+                insertMenu.add(item);
+            }
         }
         menuBar.add(insertMenu);
         setVisible(true);
@@ -585,11 +601,9 @@ public class GUI extends JFrame {
             tabbedPane.setSelectedComponent(w);
             if (!w.isSaved()) {
                 int choice = JOptionPane.showConfirmDialog(null,
-                        "File unsaved. Discard changes?", "",
+                        "File unsaved. Save changes before closing?", "",
                         JOptionPane.YES_NO_CANCEL_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
-                    tabbedPane.remove(w);
-                } else if (choice == JOptionPane.NO_OPTION) {
                     message = null;
                     check();
                     if (message != null) {
@@ -605,8 +619,11 @@ public class GUI extends JFrame {
                         save();
                         tabbedPane.remove(w);
                     }
+                } else if (choice == JOptionPane.NO_OPTION) {
+                    tabbedPane.remove(w);
                 } else {
                     close = false;
+                    break;
                 }
             } else {
                 tabbedPane.remove(w);

@@ -59,6 +59,7 @@ public class LinkView extends JFrame{
     
     public void refresh() {
         //TODO refresh link view
+        System.out.println("refresh");
     }
     
     public void close() {

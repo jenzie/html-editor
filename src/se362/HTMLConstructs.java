@@ -86,6 +86,9 @@ public enum HTMLConstructs {
 	 * @return	closing tag associated with enum.
 	 */
     public String getCloseTag() {
+        if(this.closeTag == null) {
+            return "";
+        }
         return this.closeTag;
     }
     
