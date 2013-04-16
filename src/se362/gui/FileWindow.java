@@ -234,7 +234,12 @@ public class FileWindow extends JPanel {
      * @param memento: previous state to restore to
      */
     private void setState(FileWindowMemento memento) {
-        
+        if(memento == null) {
+            return;
+        }
+        root = memento.getRootNode();
+        textArea.setText(root.getText());
+        saved = memento.getSavedState();
     }
     
     /**

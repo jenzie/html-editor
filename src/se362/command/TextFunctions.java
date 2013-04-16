@@ -15,6 +15,7 @@ public class TextFunctions {
     public static final int INDENTAll = 8;
     public static final int INDENTSELECTED = 9;
     public static final int INSERT = 10;
+    public static final int UNDO = 11;
     
     private GUI editor;
 
@@ -26,7 +27,7 @@ public class TextFunctions {
 		SaveAs saveAs = new SaveAs(editor);
 		Indent indent = new Indent(editor);
 
-		edit = new Command[11];
+		edit = new Command[12];
 		edit[0] = new SaveCommand(editor, new Save(editor), saveAs);
 		edit[1] = new CopyCommand(new Copy(editor));
 		edit[2] = new CutCommand(new Cut(editor));

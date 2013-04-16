@@ -592,7 +592,7 @@ public class GUI extends JFrame {
      * Calls the Undo command in invoker
      */
     public void undo() {
-        //invoker.actionEvent(TextFunctions.UNDO);//TODO
+        invoker.actionEvent(TextFunctions.UNDO);
     }
 
     /**
