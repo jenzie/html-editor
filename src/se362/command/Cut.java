@@ -24,6 +24,7 @@ public class Cut {
 		String cut = editor.getActiveFileWindow().getTextArea().getSelectedText();
 		editor.getActiveFileWindow().getTextArea().cut();
 		editor.getClipboard().setText(cut);
+		editor.getActiveFileWindow().saveState();
 	}
 	
 }

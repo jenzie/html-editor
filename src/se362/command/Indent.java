@@ -32,9 +32,11 @@ public class Indent {
 			
 			if (start < newLine){
 				appendText();
+				editor.getActiveFileWindow().saveState();
 			}
 			else if(newLine == -1){
 				appendText();
+				editor.getActiveFileWindow().saveState();
 			}
 		}
 		else{
@@ -45,9 +47,11 @@ public class Indent {
 			Integer index = subString.lastIndexOf("\n");
 			if (index != -1){
 				editor.getActiveFileWindow().getTextArea().replaceRange("\n" + spaces, index, index + 1);
+				editor.getActiveFileWindow().saveState();
 			}
 			else{
 				appendText();
+				editor.getActiveFileWindow().saveState();
 			}
 		}
 	}
@@ -64,6 +68,7 @@ public class Indent {
 		text = spaces + text;
 		
 		editor.getActiveFileWindow().getTextArea().setText(text);
+		editor.getActiveFileWindow().saveState();
 	}
 	
 	public void setSpacing(int spacing){
@@ -79,6 +84,7 @@ public class Indent {
 		String text = editor.getActiveFileWindow().getAllText();
 		text = spaces + text;
 		editor.getActiveFileWindow().setTextArea(text);
+		editor.getActiveFileWindow().saveState();
 	}
 	
 }

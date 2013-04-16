@@ -22,6 +22,7 @@ public class Copy {
 		
 		text = editor.getActiveFileWindow().getTextArea().getSelectedText();
 		editor.getClipboard().setText(text);
+		editor.getActiveFileWindow().saveState();
 		
 	}
 	

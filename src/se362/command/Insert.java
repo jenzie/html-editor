@@ -18,6 +18,7 @@ public class Insert {
 	
 	public void doInsert(){
 		editor.getActiveFileWindow().insertText(editor.getText());
+		editor.getActiveFileWindow().saveState();
 	}
 	
 	

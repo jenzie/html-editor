@@ -14,4 +14,15 @@ public class FileWindowCaretaker {
 		savedStates.add(newState);
 	}
 	
+	public FileWindowMemento retrieveMemento(){
+		if(savedStates.size() > 0){
+			FileWindowMemento item = savedStates.get(0);
+			savedStates.remove(0);
+			return item;
+		}else{
+			return null;
+		}
+		
+	}
+	
 }	
