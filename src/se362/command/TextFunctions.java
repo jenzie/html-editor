@@ -38,6 +38,7 @@ public class TextFunctions {
 		edit[8] = new IndentAllCommand(indent);
 		edit[9] = new IndentSelectedCommand(indent);
 		edit[10] = new InsertCommand(new Insert(editor));
+		edit[11] = new UndoCommand(editor);
 
 	}
 	
