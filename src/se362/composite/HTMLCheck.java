@@ -22,7 +22,6 @@ public class HTMLCheck {
 		private GUI editor;
 		private HTMLComponent current;
 		private int count = 0;
-		private String file;
 
 		public HTMLCheck(GUI editor) {
 			this.editor = editor;
@@ -39,7 +38,8 @@ public class HTMLCheck {
 		 * "fail" if not.
 		 */
 		
-		public void doCheck() {
+		public HTMLComponent doCheck() {
+			String file = "";
 			System.out.println("---- STARTING CHECK ----");
 			count = 0;
 			file = editor.getActiveFileWindow().getAllText();
@@ -60,6 +60,7 @@ public class HTMLCheck {
 							addHTMLNode(tag.getName());
 						}
 					} else {
+						System.out.println("Closing Tag Found");
 						if(checkCloseTag(tag.getName()) == false) {
 							editor.setMessage("HTML is not well-formed.");
 							break;
@@ -83,9 +84,10 @@ public class HTMLCheck {
 					// HANDLE PLAIN TEXT
 				}
 				if(current != null) {
-					validTree();
+					validTree();	
 				} else {
 					editor.setMessage("HTML is not well-formed.");
+					return null;
 				}
 				
 			
@@ -93,6 +95,7 @@ public class HTMLCheck {
 				//writer.write(segment.toString());
 			}
 			System.out.println(current.getText());
+			return current;
 			
 			
 			
@@ -165,9 +168,7 @@ public class HTMLCheck {
 		 * Sets the editor message appropriately.
 		 */
 		private void validTree() {
-			if(current.parent == null) {
-				editor.setMessage("HTML IS GREAT!");
-			} else {
+			if(current.parent != null) {
 				editor.setMessage("HTML is not well-formed.");
 			}
 		}
