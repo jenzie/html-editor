@@ -24,10 +24,8 @@ import se362.memento.FileWindowMemento;
 public class FileWindow extends JPanel {
     private boolean saved;
     private GUI parent;
-
     private File currentFile;
     private JTextArea textArea;
-    
     private HTMLComponent root;
     private FileWindowCaretaker caretaker;
 
@@ -230,7 +228,7 @@ public class FileWindow extends JPanel {
     }
     
     /**
-     * Set this fileWindow's state given a momento
+     * Set this fileWindow's state given a memento
      * @param memento: previous state to restore to
      */
     private void setState(FileWindowMemento memento) {
@@ -250,7 +248,7 @@ public class FileWindow extends JPanel {
     }
     
     /**
-     * Save the current state as a momento and give it to the caretaker
+     * Save the current state as a memento and give it to the caretaker
      */
     public void saveState() {
         caretaker.addMemento(new FileWindowMemento(root, saved));

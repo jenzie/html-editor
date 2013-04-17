@@ -354,7 +354,8 @@ public class GUI extends JFrame {
         JMenu editMenu = new JMenu("Edit");
         menuBar.add(editMenu);
         
-        JMenuItem mntmUndo = new JMenuItem("Undo", new ImageIcon(GUI.class.getResource("/undo.png")));
+        JMenuItem mntmUndo = new JMenuItem("Undo",
+				new ImageIcon(GUI.class.getResource("/undo.png")));
         mntmUndo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 undo();
@@ -396,7 +397,8 @@ public class GUI extends JFrame {
                 message = null;
                 check();
                 if(message != null) {
-                    JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+							null, message, "", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -438,9 +440,12 @@ public class GUI extends JFrame {
                 final JMenuItem item = new JMenuItem(h.name());
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        HTMLConstructs tag = HTMLConstructs.valueOf(item.getText());
-                        String arg = "\"" + JOptionPane.showInputDialog("") + "\"";
-                        text = tag.getOpenTag() + tag.getArgument() + arg + ">" + tag.getCloseTag();
+                        HTMLConstructs tag =
+								HTMLConstructs.valueOf(item.getText());
+                        String arg =
+								"\"" + JOptionPane.showInputDialog("") + "\"";
+                        text = tag.getOpenTag() + tag.getArgument() + arg +
+								">" + tag.getCloseTag();
                         invoker.actionEvent(TextFunctions.INSERT);
                     }
                 });
@@ -450,7 +455,8 @@ public class GUI extends JFrame {
                 final JMenuItem item = new JMenuItem(h.name());
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        HTMLConstructs tag = HTMLConstructs.valueOf(item.getText());
+                        HTMLConstructs tag =
+								HTMLConstructs.valueOf(item.getText());
                         text = tag.getOpenTag() + tag.getCloseTag();
                         invoker.actionEvent(TextFunctions.INSERT);
                     }

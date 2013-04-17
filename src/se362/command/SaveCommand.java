@@ -9,18 +9,18 @@ import se362.gui.GUI;
 public class SaveCommand implements Command{
 	Save save;
 	SaveAs saveAs;
-	GUI squishy;
+	GUI editor;
 	
 	public SaveCommand(GUI editor, Save save, SaveAs saveAs){
 		this.save = save;
 		this.saveAs = saveAs;
-		this.squishy = editor;
+		this.editor = editor;
 	}
 
 	@Override
 	public void execute() {
 		
-		if(squishy.getActiveFileWindow().getFile() == null){
+		if(editor.getActiveFileWindow().getFile() == null){
 			saveAs.doSave();
 		}
 		else{

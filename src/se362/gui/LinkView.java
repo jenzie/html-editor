@@ -45,7 +45,8 @@ public class LinkView extends JFrame{
         add(pane);
         
         JMenuBar menu = new JMenuBar();
-        JMenuItem refresh = new JMenuItem("Refresh", new ImageIcon(GUI.class.getResource("/refresh.png")));
+        JMenuItem refresh = new JMenuItem(
+			"Refresh", new ImageIcon(GUI.class.getResource("/refresh.png")));
         refresh.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 refresh();

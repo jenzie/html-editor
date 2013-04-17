@@ -91,7 +91,11 @@ public enum HTMLConstructs {
         }
         return this.closeTag;
     }
-    
+
+	/**
+	 * Getter for enum's argument.
+	 * @return	argument associated with enum.
+	 */
     public String getArgument() {
         return this.arg;
     }
