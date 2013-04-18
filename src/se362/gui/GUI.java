@@ -268,7 +268,7 @@ public class GUI extends JFrame {
                 open();
             }
         });
-        fileMenu.add(mntmOpen);
+
 
         JMenuItem mntmSave = new JMenuItem("Save", new ImageIcon(
                 GUI.class.getResource("/save.png")));
@@ -371,6 +371,14 @@ public class GUI extends JFrame {
         mntmCut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cut();
+            }
+        });
+        editMenu.add(mntmCut);
+        
+        JMenuItem mntmLnkVw = new JMenuItem("Link View");
+        mntmLnkVw.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                getActiveFileWindow().showLinkView();
             }
         });
         editMenu.add(mntmCut);
