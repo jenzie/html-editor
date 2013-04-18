@@ -7,21 +7,15 @@ import se362.gui.GUI;
  */
 public class Indent {
         private GUI editor;
-        private int spacing;
         
         public Indent(GUI editor){
                 this.editor = editor;
-                spacing = 5;
         }
         
         public void indentSelected(){
-                String spaces = "";
-                for (int x = 0; x<spacing; x++){
-                        spaces = spaces + " ";
-                }
                 if (editor.getActiveFileWindow().getSelectedText() != null){
                         String selected = editor.getActiveFileWindow().getSelectedText();
-                        selected = selected.replaceAll("\n", "\n" + spaces);
+                        selected = selected.replaceAll("\n", "\n" + editor.Spaces());
                         int start = editor.getActiveFileWindow().
                                         getTextArea().getSelectionStart();
                         int end = editor.getActiveFileWindow().
@@ -49,7 +43,7 @@ public class Indent {
                         Integer index = subString.lastIndexOf("\n");
                         if (index != -1){
                                 editor.getActiveFileWindow().getTextArea().
-                                                replaceRange("\n" + spaces, index, index + 1);
+                                                replaceRange("\n" + editor.Spaces(), index, index + 1);
                         }
                         else{
                                 prependText();
@@ -57,31 +51,19 @@ public class Indent {
                 }
         }
         
-        public void indentAll(){
-                String spaces = "";
-                for (int x = 0; x<spacing; x++){
-                        spaces = spaces + " ";
-                }
-                
+        public void indentAll(){               
                 String text = editor.getActiveFileWindow().getAllText();
                 
-                text = text.replaceAll("\n","\n" + spaces);
-                text = spaces + text;
+                text = text.replaceAll("\n","\n" + editor.Spaces());
+                text = editor.Spaces() + text;
                 
                 editor.getActiveFileWindow().getTextArea().setText(text);
         }
         
-        public void setSpacing(int spacing){
-                this.spacing = spacing;
-        }
         
         private void prependText(){
-                String spaces = "";
-                for (int x = 0; x<spacing; x++){
-                        spaces = spaces + " ";
-                }
                 String text = editor.getActiveFileWindow().getAllText();
-                text = spaces + text;
+                text = editor.Spaces() + text;
                 editor.getActiveFileWindow().setTextArea(text);
         }
         

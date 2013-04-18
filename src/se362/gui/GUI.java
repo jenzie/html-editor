@@ -46,6 +46,7 @@ public class GUI extends JFrame {
     private ArrayList<FileWindow> windows;
     private JTabbedPane tabbedPane;
     private String text;
+    private int spacing = 5;
 
     /**
      * Launch the HTML Editor.
@@ -427,6 +428,14 @@ public class GUI extends JFrame {
         	}
         });
         editMenu.add(mntmWordWrap);
+        
+        JMenuItem mntmSpaces = new JMenuItem("Change Indentation Spaces");
+        mntmSpaces.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        		changeSpaces();
+        	}
+        });
+        editMenu.add(mntmSpaces);
 
         //insert menu items
         JMenu insertMenu = new JMenu("Insert");
@@ -446,6 +455,7 @@ public class GUI extends JFrame {
 								"\"" + JOptionPane.showInputDialog("") + "\"";
                         text = tag.getOpenTag() + tag.getArgument() + arg +
 								">" + tag.getCloseTag();
+
                         invoker.actionEvent(TextFunctions.INSERT);
                     }
                 });
@@ -458,6 +468,13 @@ public class GUI extends JFrame {
                         HTMLConstructs tag =
 								HTMLConstructs.valueOf(item.getText());
                         text = tag.getOpenTag() + tag.getCloseTag();
+                        if (item.getText() == "TABLE"){
+                        	text = tag.getOpenTag() + "\n" + InsertTable() + tag.getCloseTag();
+                        }
+                        if (item.getText() == "OL" || item.getText() == "UL"
+                        		|| item.getText() == "DL"){
+                        	text = tag.getOpenTag() + "\n" + InsertLists() + tag.getCloseTag();
+                        }
                         invoker.actionEvent(TextFunctions.INSERT);
                     }
                 });
@@ -466,6 +483,60 @@ public class GUI extends JFrame {
         }
         menuBar.add(insertMenu);
         setVisible(true);
+    }
+    
+    /**
+     * Asks the user for the number of rows and columns in a table and inserts them
+     */
+    private String InsertTable(){
+    	boolean integerString = false;
+    	int numRows;
+    	int numColumns;
+    	String text = "";
+    	do{    	
+    		String rows = JOptionPane.showInputDialog(null, "Enter number of rows: ", "", 1);
+    		try{
+    			numRows = Integer.parseInt(rows);
+    			integerString = true;
+    		}
+    		finally{}
+    	}while (integerString == false);
+    	
+    	integerString = false;
+    	do{
+    		String columns = JOptionPane.showInputDialog(null, "Enter number of columns: ", "", 1);
+    		try{
+    			numColumns = Integer.parseInt(columns);
+    			integerString = true;
+    		}finally{}
+    	}while(integerString == false);
+    	
+    	for (int x = 0; x < numRows; x++){
+    		text = text + Spaces() + "<tr>" + "\n";
+    		for (int y = 0; y < numColumns; y++){
+    			text = text + Spaces() + Spaces() + "<td></td>" + "\n";
+    		}
+    		text = text + Spaces() + "</tr>" + "\n";
+    	}
+    	return text;
+    }
+    
+    private String InsertLists(){
+    	boolean integerString = false;
+    	int numLists;
+    	String text = "";
+    	do{
+    		String lists = JOptionPane.showInputDialog(null, "Enter the number of lists: ", "", 1);
+    		try{
+    			numLists = Integer.parseInt(lists);
+    			integerString = true;
+    		}finally{}
+    	}while (integerString == false);
+    	
+    	for (int x = 0; x < numLists; x++){
+    		text = text + Spaces() + "<li></li>" + "\n";
+    	}
+    	return text;
     }
 
     /**
@@ -700,5 +771,36 @@ public class GUI extends JFrame {
         int i = tabbedPane.getSelectedIndex();
         windows.remove(w);
         tabbedPane.remove(i);
+    }
+    
+    /**
+     * Returns a string with a number of spaces equal to the spacing int
+     * @return
+     */
+    public String Spaces()
+    {
+    	String spaces = "";
+    	for (int x = 0; x< spacing; x++){
+    		spaces = spaces + " ";
+    	}
+    	return spaces;
+    }
+    
+    /**
+     * Changes the number of spaces the indent indents by
+     */
+    public void changeSpaces(){
+    	boolean integerString = false;
+    	int numSpaces;
+    	String text = "";
+    	do{
+    		String spaces = JOptionPane.showInputDialog(null, "Desired number of spaces to indent: ", "", 1);
+    		try{
+    			numSpaces = Integer.parseInt(spaces);
+    			integerString = true;
+    		}finally{}
+    	}while (integerString == false);
+    	
+    	this.spacing = numSpaces;
     }
 }
