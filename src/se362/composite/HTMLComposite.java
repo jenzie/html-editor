@@ -80,12 +80,11 @@ public class HTMLComposite extends HTMLComponent{
 	}
 	
 	public String getText() {
-		String x = "<" + this.getName() + ">\n";
+		String x = "<" + this.getName() + ">";
 		for(HTMLComponent h : children) {
-			x += "    " + h.getText() + 
-					'\n';
+			x += h.getText();
 		}
-		x += "   </" + getCloseTag() + ">\n";
+		x += "</" + getCloseTag() + ">\n";
 		return x;
 	}
 }

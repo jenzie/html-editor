@@ -219,12 +219,21 @@ public class FileWindow extends JPanel {
         saved = true;
     }
     
+    public HTMLComponent getRootNode() {
+        return root;
+    }
+    
     /**
      * Set the fileWindow's root node to the given node
      * @param node: the new root node
      */
     public void setRootNode(HTMLComponent node) {
-        this.root = node;
+        if(node == null) {
+            System.out.println("null");
+        }else {
+            //System.out.println(node.getText() + "\n\nnode\n");
+            this.root = node;
+        }
     }
     
     /**
@@ -236,7 +245,12 @@ public class FileWindow extends JPanel {
             return;
         }
         root = memento.getRootNode();
-        textArea.setText(root.getText());
+        if(root != null) {
+            textArea.setText(root.getText());
+        } else {
+            textArea.setText("");
+        }
+        
         saved = memento.getSavedState();
     }
     
@@ -251,6 +265,7 @@ public class FileWindow extends JPanel {
      * Save the current state as a memento and give it to the caretaker
      */
     public void saveState() {
+        parent.check();
         caretaker.addMemento(new FileWindowMemento(root, saved));
     }
 }

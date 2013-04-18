@@ -62,8 +62,10 @@ public class HTMLCheck {
 		}
 		if (validTree()) {
 //			System.out.println(current.getText());
+		    editor.getActiveFileWindow().setRootNode(current);
 			return current;
 		} else {
+		    editor.getActiveFileWindow().setRootNode(null);
 			return null;
 		}
 	}
@@ -121,6 +123,10 @@ public class HTMLCheck {
 	 * child of the tag in which it is nested.
 	 */
 	private void addLeafNode(String name) {
+	    if(current == null) {
+	        current = new HTMLLeaf(name, "", null);
+	        return;
+	    }
 		HTMLLeaf newNode = new HTMLLeaf(name, "", current);
 		current.add(newNode);
 //		System.out.println("Adding LeafNode: " + newNode.getName());

@@ -1,15 +1,22 @@
 package se362.gui;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+import se362.composite.HTMLComponent;
 
 @SuppressWarnings("serial")
 public class LinkView extends JFrame{
@@ -40,6 +47,19 @@ public class LinkView extends JFrame{
             public void windowOpened(WindowEvent arg0) {
             }
         });
+        
+        JTextArea textArea = new JTextArea();
+        add(textArea, BorderLayout.CENTER);
+        
+        //HTMLComponent node = w.getRootNode();
+        //String text = node.getText();
+        String text = "<html>\n<a href=\"www\">text</a>\n<a href=\"www.google.com\">text</a>\nrandom text\n<a href=\"http://www.gOogle.com\">\n</html>";
+        Pattern p = Pattern.compile("href=\"([A-Za-z.:\\/-_()%]*)\"");
+        Matcher m = p.matcher(text);
+        while(m.find()) {
+            System.out.println(text.substring(m.start(), m.end()));
+            textArea.setText(textArea.getText() + text.substring(m.start(), m.end()));
+        }
         
         JPanel pane = new JPanel();
         add(pane);

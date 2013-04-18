@@ -140,6 +140,7 @@ public class GUI extends JFrame {
         btnOpen.setPreferredSize(new Dimension(22, 22));
         btnOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+                check();
                 open();
             }
         });
@@ -263,6 +264,7 @@ public class GUI extends JFrame {
                 GUI.class.getResource("/open.png")));
         mntmOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+                check();
                 open();
             }
         });
@@ -494,12 +496,14 @@ public class GUI extends JFrame {
     	int numColumns;
     	String text = "";
     	do{    	
-    		String rows = JOptionPane.showInputDialog(null, "Enter number of rows: ", "", 1);
+    		String rows = JOptionPane.showInputDialog(null, "Enter number of rows: ", "", JOptionPane.PLAIN_MESSAGE);
     		try{
     			numRows = Integer.parseInt(rows);
     			integerString = true;
     		}
-    		finally{}
+    		catch(Exception e) {
+    		    return "";
+    		}
     	}while (integerString == false);
     	
     	integerString = false;
@@ -508,7 +512,10 @@ public class GUI extends JFrame {
     		try{
     			numColumns = Integer.parseInt(columns);
     			integerString = true;
-    		}finally{}
+    		}
+    		catch(Exception e) {
+    		    return "";
+    		}
     	}while(integerString == false);
     	
     	for (int x = 0; x < numRows; x++){
@@ -530,7 +537,10 @@ public class GUI extends JFrame {
     		try{
     			numLists = Integer.parseInt(lists);
     			integerString = true;
-    		}finally{}
+    		}
+    		catch(Exception e) {
+                return "";
+            }
     	}while (integerString == false);
     	
     	for (int x = 0; x < numLists; x++){
