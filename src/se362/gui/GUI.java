@@ -449,7 +449,6 @@ public class GUI extends JFrame {
 
         //insert menu items
         JMenu insertMenu = new JMenu("Insert");
-        // TODO Insert for table/list
         JMenu withArguments = new JMenu("Constructs with Arguments");
         insertMenu.add(withArguments);
         
@@ -786,6 +785,7 @@ public class GUI extends JFrame {
         FileWindow w = (FileWindow) tabbedPane.getSelectedComponent();
         if (w == null)
             return;
+        w.getLinkView().close();
         int i = tabbedPane.getSelectedIndex();
         windows.remove(w);
         tabbedPane.remove(i);

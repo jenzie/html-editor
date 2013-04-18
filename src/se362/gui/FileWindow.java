@@ -28,6 +28,7 @@ public class FileWindow extends JPanel {
     private JTextArea textArea;
     private HTMLComponent root;
     private FileWindowCaretaker caretaker;
+    private LinkView linkView;
 
     // Default Constructor
     public FileWindow(GUI g) {
@@ -267,5 +268,33 @@ public class FileWindow extends JPanel {
     public void saveState() {
         parent.check();
         caretaker.addMemento(new FileWindowMemento(root, saved));
+    }
+    
+    /**
+     * Create a link view, or refresh it if it already exists
+     */
+    public void showLinkView() {
+        parent.check();
+        if(linkView == null) {
+            linkView = new LinkView(this);
+        }
+        else {
+            linkView.refresh();
+        }
+    }
+    
+    /**
+     * Remove the linkView from this window
+     */
+    public void clearLinkView() {
+        this.linkView = null;
+    }
+    
+    /**
+     * getter for link view
+     * @return linkView
+     */
+    public LinkView getLinkView() {
+        return linkView;
     }
 }
