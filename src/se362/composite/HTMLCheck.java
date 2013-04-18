@@ -1,12 +1,6 @@
 package se362.composite;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import net.htmlparser.jericho.*;
-
-
 import se362.HTMLConstructs;
 import se362.gui.GUI;
 
@@ -20,7 +14,7 @@ import se362.gui.GUI;
 public class HTMLCheck {
 	
 		private GUI editor;
-		private HTMLComponent current;
+		private HTMLComponent current = null;
 		private int count = 0;
 
 		public HTMLCheck(GUI editor) {
@@ -44,77 +38,59 @@ public class HTMLCheck {
 			count = 0;
 			file = editor.getActiveFileWindow().getAllText();
 			Source source = new Source(file);
-			String data;
+//			String data;
 			
 			for (Segment segment : source) {
 				if (segment instanceof Tag) {
 					Tag tag = (Tag)segment;
 					TagType x = tag.getTagType();
 					if(x.toString().equals("normal")) {
-						StartTag startTag = (StartTag) tag;
-						Attributes attributes = startTag.getAttributes();
-						if(attributes != null) {
-							data = attributes.toString();
-							addHTMLNode(tag.getName());
-						} else {
-							addHTMLNode(tag.getName());
-						}
+						addHTMLNode(tag.getName());
 					} else {
-						System.out.println("Closing Tag Found");
 						if(checkCloseTag(tag.getName()) == false) {
 							editor.setMessage("HTML is not well-formed.");
 							break;
 						}
 					}
 //					System.out.println(tag.getName());
-				} else if (segment instanceof CharacterReference) {
-					CharacterReference characterReference = (CharacterReference)segment;
-					System.out.println(characterReference.getCharacterReferenceString());
+//				} else if (segment instanceof CharacterReference) {
+//					CharacterReference characterReference = (CharacterReference)segment;
+//					System.out.println(characterReference.getCharacterReferenceString());
 				} else {
 					if(!segment.isWhiteSpace()) {
 						addLeafNode(segment.toString());
 //						System.out.println("TEXT: " + segment.toString());
 					}
 				}
-				if(current != null) {
-					validTree();	
-				} else {
-					editor.setMessage("HTML is not well-formed.");
-					editor.getActiveFileWindow().setRootNode(null);
-				}
+				
+//				if(current != null) {
+//					validTree();	
+//				} else {
+//					editor.setMessage("HTML is not well-formed.");
+////					editor.getActiveFileWindow().setRootNode(null);
+//				}
 			}
-			System.out.println(current.getText());
-			editor.getActiveFileWindow().setRootNode(current);
+			if(validTree()) {
+				System.out.println(current.getText());
+//				editor.getActiveFileWindow().setRootNode(current);
+				return current;
+			} else {
+				return null;
+			}
 		}
 		
-		private void buildTree(HTMLComponent rootNode) {
-			int childCount;
-			if(rootNode.children.isEmpty()) {
-				childCount = 0;
-			} else {
-				childCount = rootNode.children.size();
-			}
-			System.out.println("TREE_REBUILD: " + rootNode.getName());
-			if(childCount == 0) {
-				System.out.println("CLOSE TAG: " + rootNode.getCloseTag());
-			}
-			while(childCount != 0) {
-				for(int i = 0; i < rootNode.children.size(); i++) {
-					buildTree(rootNode.children.get(i)); 
-					childCount --;
-				}
-			}
-		}
 		
 		/**
 		 * Checks to see if the current tree is a valid tree by checking to see
 		 * if the current node is the root node.
 		 * Sets the editor message appropriately.
 		 */
-		private void validTree() {
-			if(current.parent != null) {
+		private boolean validTree() {
+			if((current == null) || (current.parent != null)) {
 				editor.setMessage("HTML is not well-formed.");
+				return false;
 			}
+			return true;
 		}
 		
 		/**
@@ -123,48 +99,31 @@ public class HTMLCheck {
 		 * For testing purposes, it is public and static.
 		 * @return	true if tag is valid html; false otherwise.
 		 */
-		public static boolean checkValid(String tag) {
-			String open, arg;
-			//System.out.println("checkValid() initiated");
-
-			// check against list of valid tags; ignore upper/lowercase
-			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
-				if(enumTag.getArgument() != null) {
-					open = tag.substring(0, enumTag.getOpenTag().length());
-					if(open.equalsIgnoreCase(enumTag.getOpenTag())) {
-						arg = tag.substring(enumTag.getOpenTag().length());
-						if(enumTag.getArgument().equalsIgnoreCase(arg)) {
-							//System.out.println("checkValid -> return true");
-							return true;
-						}
-						//System.out.println("checkValid -> return false");
-						return false;
-					}
-				} else if (enumTag.getOpenTag().equalsIgnoreCase(tag) ||
-						enumTag.getCloseTag().equalsIgnoreCase(tag)) {
-					//System.out.println("checkValid -> return true");
-					return true;
-				}
-			}
-			System.out.println("checkValid -> return false");
-			return false;
-		}
-		
-//		/**
-//		 * tagParse(String tag) takes a string representation of a tag
-//		 * and strips off the "<", ">" and "/" characters.
-//		 * @return	String tag without brackets.
-//		 */
-//		private String tagParse(String tag) {
-//			//System.out.println("Input tag: " + tag);
-//			String cleanTag1;
-//			String cleanTag2;
-//			String cleanTag3;
-//			cleanTag1 = tag.replace("<", "");
-//			cleanTag2 = cleanTag1.replace(">", "");
-//			cleanTag3 = cleanTag2.replace("/", "");
-//			//System.out.println("Clean tag: " + cleanTag3);
-//			return cleanTag3;
+//		public static boolean checkValid(String tag) {
+//			String open, arg;
+//			//System.out.println("checkValid() initiated");
+//
+//			// check against list of valid tags; ignore upper/lowercase
+//			for (HTMLConstructs enumTag : HTMLConstructs.values()) {
+//				if(enumTag.getArgument() != null) {
+//					open = tag.substring(0, enumTag.getOpenTag().length());
+//					if(open.equalsIgnoreCase(enumTag.getOpenTag())) {
+//						arg = tag.substring(enumTag.getOpenTag().length());
+//						if(enumTag.getArgument().equalsIgnoreCase(arg)) {
+//							//System.out.println("checkValid -> return true");
+//							return true;
+//						}
+//						//System.out.println("checkValid -> return false");
+//						return false;
+//					}
+//				} else if (enumTag.getOpenTag().equalsIgnoreCase(tag) ||
+//						enumTag.getCloseTag().equalsIgnoreCase(tag)) {
+//					//System.out.println("checkValid -> return true");
+//					return true;
+//				}
+//			}
+//			System.out.println("checkValid -> return false");
+//			return false;
 //		}
 		
 		/**
@@ -189,7 +148,6 @@ public class HTMLCheck {
 //			String cleanTag = tagParse(tag);
 			
 			if(count == 0) {
-				//System.out.println("ROOT NODE");
 				HTMLComponent newNode = new HTMLComposite(tag, "unclosed", null);
 				current = newNode;
 				System.out.println("Adding Root node: " + current.getName());
@@ -216,12 +174,13 @@ public class HTMLCheck {
 				return false;
 //			System.out.println("Closing Tag Found: " + cleanTag + " ,Current: " + current.getName());	
 			if(tag.compareTo(current.getName()) != 0) {
-//				System.out.println("Closing tag does not match current.  Fail.");
+				System.out.println("Tag: " + tag + "Current: " + current.getName());
+				System.out.println("Closing tag does not match current.  Fail.");
 				return false;
 				//editor.setMessage("HTML is NOT well-formed.");
 			} else {
 				if(current.parent != null) {
-					System.out.println("GETTING HERE");
+					System.out.println("Tag: " + tag + "Current: " + current.getName());
 					current.setCloseTag(tag);
 					current = current.parent;
 				}
