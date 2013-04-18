@@ -16,39 +16,39 @@ public class TextFunctions {
     public static final int INDENTSELECTED = 9;
     public static final int INSERT = 10;
     public static final int UNDO = 11;
-    
+
     private GUI editor;
 
-	Command[] edit;
-	
-	//Constructor
-	public TextFunctions(GUI editor){
-		this.editor = editor;
-		SaveAs saveAs = new SaveAs(editor);
-		Indent indent = new Indent(editor);
+    Command[] edit;
 
-		edit = new Command[12];
-		edit[0] = new SaveCommand(editor, new Save(editor), saveAs);
-		edit[1] = new CopyCommand(new Copy(editor));
-		edit[2] = new CutCommand(new Cut(editor));
-		edit[3] = new PasteCommand(new Paste(editor));
-		edit[4] = new NewFileCommand(new NewFile(editor));
-		edit[5] = new HTMLCheckerCommand(new HTMLCheck(editor));
-		edit[6] = new SaveAsCommand(saveAs);
-		edit[7] = new OpenCommand(new Open(editor));
-		edit[8] = new IndentAllCommand(indent);
-		edit[9] = new IndentSelectedCommand(indent);
-		edit[10] = new InsertCommand(new Insert(editor));
-		edit[11] = new UndoCommand(editor);
+    // Constructor
+    public TextFunctions(GUI editor) {
+        this.editor = editor;
+        SaveAs saveAs = new SaveAs(editor);
+        Indent indent = new Indent(editor);
 
-	}
-	
-	/*
-	 * When a button is pushed or a dropdown item selected
-	 * execute the functionality for the option
-	 */
-	public void actionEvent(int spot){
-		edit[spot].execute();
-	}
-	
+        edit = new Command[12];
+        edit[0] = new SaveCommand(editor, new Save(editor), saveAs);
+        edit[1] = new CopyCommand(new Copy(editor));
+        edit[2] = new CutCommand(new Cut(editor));
+        edit[3] = new PasteCommand(new Paste(editor));
+        edit[4] = new NewFileCommand(new NewFile(editor));
+        edit[5] = new HTMLCheckerCommand(new HTMLCheck(editor));
+        edit[6] = new SaveAsCommand(saveAs);
+        edit[7] = new OpenCommand(new Open(editor));
+        edit[8] = new IndentAllCommand(indent);
+        edit[9] = new IndentSelectedCommand(indent);
+        edit[10] = new InsertCommand(new Insert(editor));
+        edit[11] = new UndoCommand(editor);
+
+    }
+
+    /*
+     * When a button is pushed or a dropdown item selected execute the
+     * functionality for the option
+     */
+    public void actionEvent(int spot) {
+        edit[spot].execute();
+    }
+
 }

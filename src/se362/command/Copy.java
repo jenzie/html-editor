@@ -7,23 +7,21 @@ import se362.gui.GUI;
  * @author Brad Bensch, brb7020@g.rit.edu
  */
 public class Copy {
-	private GUI editor;
-	private String text;
-	
-	public Copy(GUI editor){
-		this.editor = editor;
-	}
+    private GUI editor;
+    private String text;
 
-	public void doCopy(){
-		/*
-		 * Find current selected text
-		 * Save it to the GUI Clipboard
-		 */
-		editor.getActiveFileWindow().saveState();
-		text = editor.getActiveFileWindow().getTextArea().getSelectedText();
-		editor.getClipboard().setText(text);
-		
-		
-	}
-	
+    public Copy(GUI editor) {
+        this.editor = editor;
+    }
+
+    public void doCopy() {
+        /*
+         * Find current selected text Save it to the GUI Clipboard
+         */
+        editor.getActiveFileWindow().saveState();
+        text = editor.getActiveFileWindow().getTextArea().getSelectedText();
+        editor.getClipboard().setText(text);
+
+    }
+
 }

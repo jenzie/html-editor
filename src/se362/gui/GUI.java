@@ -72,7 +72,7 @@ public class GUI extends JFrame {
             FileWindow window = new FileWindow(this, startFile);
             windows.add(window);
         }
-        this.invoker = new TextFunctions(this);//Command receiver
+        this.invoker = new TextFunctions(this);// Command receiver
         this.clipboard = new Clipboard();
         this.fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new FileFilter() {
@@ -88,6 +88,7 @@ public class GUI extends JFrame {
                 }
                 return false;
             }
+
             public String getDescription() {
                 return "*.html, *.txt";
             }
@@ -97,17 +98,23 @@ public class GUI extends JFrame {
         addWindowListener(new WindowListener() {
             public void windowActivated(WindowEvent arg0) {
             }
+
             public void windowClosed(WindowEvent arg0) {
             }
+
             public void windowClosing(WindowEvent arg0) {
                 close();
             }
+
             public void windowDeactivated(WindowEvent arg0) {
             }
+
             public void windowDeiconified(WindowEvent arg0) {
             }
-            public void windowIconified(WindowEvent arg0) {                
+
+            public void windowIconified(WindowEvent arg0) {
             }
+
             public void windowOpened(WindowEvent arg0) {
             }
         });
@@ -124,7 +131,7 @@ public class GUI extends JFrame {
         getContentPane().add(iconPane, BorderLayout.NORTH);
         iconPane.setLayout(new FlowLayout(FlowLayout.LEFT, 1, 1));
 
-        //Buttons (below menubar, icons only)
+        // Buttons (below menubar, icons only)
         JButton btnNew = new JButton(new ImageIcon(
                 GUI.class.getResource("/new.png")));
         btnNew.setPreferredSize(new Dimension(22, 22));
@@ -202,10 +209,11 @@ public class GUI extends JFrame {
         });
         iconPane.add(btnCloseTab);
 
-        iconPane.add(new JLabel("      "));//For spacing
+        iconPane.add(new JLabel("      "));// For spacing
 
-        JButton btnUndo = new JButton(new ImageIcon(GUI.class.getResource("/undo.png")));
-        btnUndo.setPreferredSize(new Dimension(22,22));
+        JButton btnUndo = new JButton(new ImageIcon(
+                GUI.class.getResource("/undo.png")));
+        btnUndo.setPreferredSize(new Dimension(22, 22));
         btnUndo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 undo();
@@ -213,7 +221,7 @@ public class GUI extends JFrame {
         });
         iconPane.add(btnUndo);
 
-        iconPane.add(new JLabel("      "));//For spacing
+        iconPane.add(new JLabel("      "));// For spacing
         JButton btnCut = new JButton(new ImageIcon(
                 GUI.class.getResource("/cut.png")));
         btnCut.setPreferredSize(new Dimension(22, 22));
@@ -244,13 +252,13 @@ public class GUI extends JFrame {
         });
         iconPane.add(btnPaste);
 
-        //Menubar
+        // Menubar
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
 
-        //File menu items
+        // File menu items
         JMenuItem mntmNew = new JMenuItem("New", new ImageIcon(
                 GUI.class.getResource("/new.png")));
         mntmNew.addActionListener(new ActionListener() {
@@ -268,7 +276,6 @@ public class GUI extends JFrame {
                 open();
             }
         });
-
 
         JMenuItem mntmSave = new JMenuItem("Save", new ImageIcon(
                 GUI.class.getResource("/save.png")));
@@ -353,12 +360,12 @@ public class GUI extends JFrame {
 
         setJMenuBar(menuBar);
 
-        //Edit menu items
+        // Edit menu items
         JMenu editMenu = new JMenu("Edit");
         menuBar.add(editMenu);
-        
-        JMenuItem mntmUndo = new JMenuItem("Undo",
-				new ImageIcon(GUI.class.getResource("/undo.png")));
+
+        JMenuItem mntmUndo = new JMenuItem("Undo", new ImageIcon(
+                GUI.class.getResource("/undo.png")));
         mntmUndo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 undo();
@@ -374,7 +381,7 @@ public class GUI extends JFrame {
             }
         });
         editMenu.add(mntmCut);
-        
+
         JMenuItem mntmLnkVw = new JMenuItem("Link View");
         mntmLnkVw.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -407,14 +414,14 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 message = null;
                 check();
-                if(message != null) {
-                    JOptionPane.showMessageDialog(
-							null, message, "", JOptionPane.ERROR_MESSAGE);
+                if (message != null) {
+                    JOptionPane.showMessageDialog(null, message, "",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         editMenu.add(mntmCheckHtml);
-        
+
         JMenuItem mntmIndent = new JMenuItem("Indent");
         mntmIndent.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -422,7 +429,7 @@ public class GUI extends JFrame {
             }
         });
         editMenu.add(mntmIndent);
-        
+
         JMenuItem mntmIndentAll = new JMenuItem("Indent All");
         mntmIndentAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -430,59 +437,60 @@ public class GUI extends JFrame {
             }
         });
         editMenu.add(mntmIndentAll);
-        
+
         JMenuItem mntmWordWrap = new JMenuItem("Toggle Line Wrap");
-        mntmWordWrap.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-        		toggleWordWrap();
-        	}
+        mntmWordWrap.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                toggleWordWrap();
+            }
         });
         editMenu.add(mntmWordWrap);
-        
+
         JMenuItem mntmSpaces = new JMenuItem("Change Indentation Spaces");
-        mntmSpaces.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-        		changeSpaces();
-        	}
+        mntmSpaces.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                changeSpaces();
+            }
         });
         editMenu.add(mntmSpaces);
 
-        //insert menu items
+        // insert menu items
         JMenu insertMenu = new JMenu("Insert");
         JMenu withArguments = new JMenu("Constructs with Arguments");
         insertMenu.add(withArguments);
-        
+
         HTMLConstructs[] tags = HTMLConstructs.values();
         for (HTMLConstructs h : tags) {
-            if(h.getArgument() != null) {
+            if (h.getArgument() != null) {
                 final JMenuItem item = new JMenuItem(h.name());
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        HTMLConstructs tag =
-								HTMLConstructs.valueOf(item.getText());
-                        String arg =
-								"\"" + JOptionPane.showInputDialog("") + "\"";
-                        text = tag.getOpenTag() + tag.getArgument() + arg +
-								">" + tag.getCloseTag();
+                        HTMLConstructs tag = HTMLConstructs.valueOf(item
+                                .getText());
+                        String arg = "\"" + JOptionPane.showInputDialog("")
+                                + "\"";
+                        text = tag.getOpenTag() + tag.getArgument() + arg + ">"
+                                + tag.getCloseTag();
 
                         invoker.actionEvent(TextFunctions.INSERT);
                     }
                 });
                 withArguments.add(item);
-            }
-            else {
+            } else {
                 final JMenuItem item = new JMenuItem(h.name());
                 item.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        HTMLConstructs tag =
-								HTMLConstructs.valueOf(item.getText());
+                        HTMLConstructs tag = HTMLConstructs.valueOf(item
+                                .getText());
                         text = tag.getOpenTag() + tag.getCloseTag();
-                        if (item.getText() == "TABLE"){
-                        	text = tag.getOpenTag() + "\n" + InsertTable() + tag.getCloseTag();
+                        if (item.getText() == "TABLE") {
+                            text = tag.getOpenTag() + "\n" + InsertTable()
+                                    + tag.getCloseTag();
                         }
                         if (item.getText() == "OL" || item.getText() == "UL"
-                        		|| item.getText() == "DL"){
-                        	text = tag.getOpenTag() + "\n" + InsertLists() + tag.getCloseTag();
+                                || item.getText() == "DL") {
+                            text = tag.getOpenTag() + "\n" + InsertLists()
+                                    + tag.getCloseTag();
                         }
                         invoker.actionEvent(TextFunctions.INSERT);
                     }
@@ -493,73 +501,75 @@ public class GUI extends JFrame {
         menuBar.add(insertMenu);
         setVisible(true);
     }
-    
+
     /**
-     * Asks the user for the number of rows and columns in a table and inserts them
+     * Asks the user for the number of rows and columns in a table and inserts
+     * them
      */
-    private String InsertTable(){
-    	boolean integerString = false;
-    	int numRows;
-    	int numColumns;
-    	String text = "";
-    	do{    	
-    		String rows = JOptionPane.showInputDialog(null, "Enter number of rows: ", "", JOptionPane.PLAIN_MESSAGE);
-    		try{
-    			numRows = Integer.parseInt(rows);
-    			integerString = true;
-    		}
-    		catch(Exception e) {
-    		    return "";
-    		}
-    	}while (integerString == false);
-    	
-    	integerString = false;
-    	do{
-    		String columns = JOptionPane.showInputDialog(null, "Enter number of columns: ", "", 1);
-    		try{
-    			numColumns = Integer.parseInt(columns);
-    			integerString = true;
-    		}
-    		catch(Exception e) {
-    		    return "";
-    		}
-    	}while(integerString == false);
-    	
-    	for (int x = 0; x < numRows; x++){
-    		text = text + Spaces() + "<tr>" + "\n";
-    		for (int y = 0; y < numColumns; y++){
-    			text = text + Spaces() + Spaces() + "<td></td>" + "\n";
-    		}
-    		text = text + Spaces() + "</tr>" + "\n";
-    	}
-    	return text;
-    }
-    
-    private String InsertLists(){
-    	boolean integerString = false;
-    	int numLists;
-    	String text = "";
-    	do{
-    		String lists = JOptionPane.showInputDialog(null, "Enter the number of lists: ", "", 1);
-    		try{
-    			numLists = Integer.parseInt(lists);
-    			integerString = true;
-    		}
-    		catch(Exception e) {
+    private String InsertTable() {
+        boolean integerString = false;
+        int numRows;
+        int numColumns;
+        String text = "";
+        do {
+            String rows = JOptionPane.showInputDialog(null,
+                    "Enter number of rows: ", "", JOptionPane.PLAIN_MESSAGE);
+            try {
+                numRows = Integer.parseInt(rows);
+                integerString = true;
+            } catch (Exception e) {
                 return "";
             }
-    	}while (integerString == false);
-    	
-    	for (int x = 0; x < numLists; x++){
-    		text = text + Spaces() + "<li></li>" + "\n";
-    	}
-    	return text;
+        } while (integerString == false);
+
+        integerString = false;
+        do {
+            String columns = JOptionPane.showInputDialog(null,
+                    "Enter number of columns: ", "", 1);
+            try {
+                numColumns = Integer.parseInt(columns);
+                integerString = true;
+            } catch (Exception e) {
+                return "";
+            }
+        } while (integerString == false);
+
+        for (int x = 0; x < numRows; x++) {
+            text = text + Spaces() + "<tr>" + "\n";
+            for (int y = 0; y < numColumns; y++) {
+                text = text + Spaces() + Spaces() + "<td></td>" + "\n";
+            }
+            text = text + Spaces() + "</tr>" + "\n";
+        }
+        return text;
+    }
+
+    private String InsertLists() {
+        boolean integerString = false;
+        int numLists;
+        String text = "";
+        do {
+            String lists = JOptionPane.showInputDialog(null,
+                    "Enter the number of lists: ", "", 1);
+            try {
+                numLists = Integer.parseInt(lists);
+                integerString = true;
+            } catch (Exception e) {
+                return "";
+            }
+        } while (integerString == false);
+
+        for (int x = 0; x < numLists; x++) {
+            text = text + Spaces() + "<li></li>" + "\n";
+        }
+        return text;
     }
 
     /**
      * Given a file, adds the file to the view
      * 
-     * @param file: the file to open
+     * @param file
+     *            : the file to open
      */
     public void open(File file) {
         FileWindow w = new FileWindow(this, file);
@@ -571,7 +581,8 @@ public class GUI extends JFrame {
     /**
      * Returns the extension of the given file
      * 
-     * @param f: file to check
+     * @param f
+     *            : file to check
      * @return String: the file extension
      */
     public String getExtension(File f) {
@@ -652,14 +663,13 @@ public class GUI extends JFrame {
      * Toggles the active window's line wrap status
      */
     public void toggleWordWrap() {
-    	if (getActiveFileWindow().getTextArea().getLineWrap() == false){
-    		getActiveFileWindow().getTextArea().setLineWrap(true);
-    	}
-    	else if (getActiveFileWindow().getTextArea().getLineWrap() == true){
-    		getActiveFileWindow().getTextArea().setLineWrap(false);
-    	}
+        if (getActiveFileWindow().getTextArea().getLineWrap() == false) {
+            getActiveFileWindow().getTextArea().setLineWrap(true);
+        } else if (getActiveFileWindow().getTextArea().getLineWrap() == true) {
+            getActiveFileWindow().getTextArea().setLineWrap(false);
+        }
     }
-    
+
     /**
      * calls new command in invoker
      */
@@ -681,7 +691,7 @@ public class GUI extends JFrame {
     public void saveAs() {
         invoker.actionEvent(TextFunctions.SAVEAS);
     }
-    
+
     /**
      * Calls the Undo command in invoker
      */
@@ -695,19 +705,19 @@ public class GUI extends JFrame {
     public void check() {
         invoker.actionEvent(TextFunctions.CHECK);
     }
-    
+
     /**
      * Calls indent all command in invoker
      */
     public void indentAll() {
-    	invoker.actionEvent(TextFunctions.INDENTAll);
+        invoker.actionEvent(TextFunctions.INDENTAll);
     }
-    
+
     /**
      * Calls indent selected command in invoker
      */
-    public void indentSelected(){
-    	invoker.actionEvent(TextFunctions.INDENTSELECTED);
+    public void indentSelected() {
+        invoker.actionEvent(TextFunctions.INDENTSELECTED);
     }
 
     /**
@@ -790,35 +800,37 @@ public class GUI extends JFrame {
         windows.remove(w);
         tabbedPane.remove(i);
     }
-    
+
     /**
      * Returns a string with a number of spaces equal to the spacing int
+     * 
      * @return
      */
-    public String Spaces()
-    {
-    	String spaces = "";
-    	for (int x = 0; x< spacing; x++){
-    		spaces = spaces + " ";
-    	}
-    	return spaces;
+    public String Spaces() {
+        String spaces = "";
+        for (int x = 0; x < spacing; x++) {
+            spaces = spaces + " ";
+        }
+        return spaces;
     }
-    
+
     /**
      * Changes the number of spaces the indent indents by
      */
-    public void changeSpaces(){
-    	boolean integerString = false;
-    	int numSpaces;
-    	String text = "";
-    	do{
-    		String spaces = JOptionPane.showInputDialog(null, "Desired number of spaces to indent: ", "", 1);
-    		try{
-    			numSpaces = Integer.parseInt(spaces);
-    			integerString = true;
-    		}finally{}
-    	}while (integerString == false);
-    	
-    	this.spacing = numSpaces;
+    public void changeSpaces() {
+        boolean integerString = false;
+        int numSpaces;
+        String text = "";
+        do {
+            String spaces = JOptionPane.showInputDialog(null,
+                    "Desired number of spaces to indent: ", "", 1);
+            try {
+                numSpaces = Integer.parseInt(spaces);
+                integerString = true;
+            } finally {
+            }
+        } while (integerString == false);
+
+        this.spacing = numSpaces;
     }
 }

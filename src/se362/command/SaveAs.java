@@ -13,27 +13,27 @@ import se362.gui.GUI;
 
 /**
  * @author Brad Bensch
- *
+ * 
  */
-public class SaveAs{
-	GUI editor;
-	File file;
-	
-	public SaveAs(GUI editor){
-		this.editor = editor;
-	}
-	
-	public void doSave(){
-	    JFileChooser fc = editor.getFileChooser();
-		int choice = fc.showSaveDialog(editor);
-		if(choice == JFileChooser.APPROVE_OPTION) {
-		    file = fc.getSelectedFile();
-		    try {
+public class SaveAs {
+    GUI editor;
+    File file;
+
+    public SaveAs(GUI editor) {
+        this.editor = editor;
+    }
+
+    public void doSave() {
+        JFileChooser fc = editor.getFileChooser();
+        int choice = fc.showSaveDialog(editor);
+        if (choice == JFileChooser.APPROVE_OPTION) {
+            file = fc.getSelectedFile();
+            try {
                 FileWriter writer = new FileWriter(file);
                 editor.getActiveFileWindow().getTextArea().write(writer);
             } catch (IOException e) {
             }
-		}
-			//Returns an Int on cancel/save/error
-	}
+        }
+        // Returns an Int on cancel/save/error
+    }
 }

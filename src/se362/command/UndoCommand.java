@@ -8,7 +8,7 @@ public class UndoCommand implements Command {
     public UndoCommand(GUI editor) {
         this.editor = editor;
     }
-    
+
     @Override
     public void execute() {
         editor.getActiveFileWindow().undo();

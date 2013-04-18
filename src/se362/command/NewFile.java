@@ -7,22 +7,22 @@ import se362.gui.GUI;
 
 /**
  * @author Brad Bensch
- *
+ * 
  */
 public class NewFile {
-	private GUI editor;
-	
-	public NewFile(GUI editor){
-		this.editor = editor;
-	}
+    private GUI editor;
 
-	public void doMake(){
-		/*
-		 * Open new blank file
-		 */
-		
-		editor.newTab();
-		
-	}
-	
+    public NewFile(GUI editor) {
+        this.editor = editor;
+    }
+
+    public void doMake() {
+        /*
+         * Open new blank file
+         */
+
+        editor.newTab();
+
+    }
+
 }

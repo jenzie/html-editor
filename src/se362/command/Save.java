@@ -11,28 +11,28 @@ import se362.gui.GUI;
 
 /**
  * @author Brad Bensch
- *
+ * 
  */
 public class Save {
-	private GUI editor;
-	private File file;
-	
-	public Save(GUI editor){
-		this.editor = editor;
-	}
+    private GUI editor;
+    private File file;
 
-	public void doSave(){
-		/*
-		 * Run HTMLCheck
-		 * If true, write file to new or pre-existing location
-		 */
-		
-		file = editor.getActiveFileWindow().getFile();
-		try {
-			FileWriter writer = new FileWriter(file);
-			editor.getActiveFileWindow().getTextArea().write(writer);
-		} catch (IOException e) {}
-		
-	}
-	
+    public Save(GUI editor) {
+        this.editor = editor;
+    }
+
+    public void doSave() {
+        /*
+         * Run HTMLCheck If true, write file to new or pre-existing location
+         */
+
+        file = editor.getActiveFileWindow().getFile();
+        try {
+            FileWriter writer = new FileWriter(file);
+            editor.getActiveFileWindow().getTextArea().write(writer);
+        } catch (IOException e) {
+        }
+
+    }
+
 }

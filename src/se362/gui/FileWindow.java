@@ -34,7 +34,7 @@ public class FileWindow extends JPanel {
     public FileWindow(GUI g) {
         this.parent = g;
         this.saved = false;
-        
+
         this.caretaker = new FileWindowCaretaker();
 
         setLayout(new BorderLayout());
@@ -52,9 +52,11 @@ public class FileWindow extends JPanel {
             public void changedUpdate(DocumentEvent arg0) {
                 saved = false;
             }
+
             public void insertUpdate(DocumentEvent arg0) {
                 saved = false;
             }
+
             public void removeUpdate(DocumentEvent arg0) {
                 saved = false;
             }
@@ -63,7 +65,7 @@ public class FileWindow extends JPanel {
         // Control Character commands
         textArea.getInputMap().put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK),
-                "doSaveAction");//CTRL-S
+                "doSaveAction");// CTRL-S
         textArea.getActionMap().put("doSaveAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 parent.save();
@@ -71,7 +73,7 @@ public class FileWindow extends JPanel {
         });
         textArea.getInputMap().put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK),
-                "doNewAction");//CTRL-N
+                "doNewAction");// CTRL-N
         textArea.getActionMap().put("doNewAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 parent.newFile();
@@ -79,7 +81,7 @@ public class FileWindow extends JPanel {
         });
         textArea.getInputMap().put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_DOWN_MASK),
-                "doOpenAction");//CTRL-O
+                "doOpenAction");// CTRL-O
         textArea.getActionMap().put("doOpenAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 parent.open();
@@ -87,7 +89,7 @@ public class FileWindow extends JPanel {
         });
         textArea.getInputMap().put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.CTRL_DOWN_MASK),
-                "doCutAction");//CTRL-X
+                "doCutAction");// CTRL-X
         textArea.getActionMap().put("doCutAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 parent.cut();
@@ -95,7 +97,7 @@ public class FileWindow extends JPanel {
         });
         textArea.getInputMap().put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK),
-                "doCopyAction");//CTRL-C
+                "doCopyAction");// CTRL-C
         textArea.getActionMap().put("doCopyAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 parent.copy();
@@ -103,7 +105,7 @@ public class FileWindow extends JPanel {
         });
         textArea.getInputMap().put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK),
-                "doPasteAction");//CTRL-V
+                "doPasteAction");// CTRL-V
         textArea.getActionMap().put("doPasteAction", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 parent.paste();
@@ -127,9 +129,11 @@ public class FileWindow extends JPanel {
             public void changedUpdate(DocumentEvent arg0) {
                 saved = false;
             }
+
             public void insertUpdate(DocumentEvent arg0) {
                 saved = false;
             }
+
             public void removeUpdate(DocumentEvent arg0) {
                 saved = false;
             }
@@ -144,23 +148,24 @@ public class FileWindow extends JPanel {
     public String getSelectedText() {
         return textArea.getSelectedText();
     }
-    
+
     /**
      * Returns the starting position of the currently selected text
+     * 
      * @return
      */
     public int getSelectedStart() {
-    	return textArea.getSelectionStart();
+        return textArea.getSelectionStart();
     }
-    
+
     /**
      * Returns the end position of the currently selected text
+     * 
      * @return
      */
     public int getSelectedEnd() {
-    	return textArea.getSelectionEnd();
+        return textArea.getSelectionEnd();
     }
-    
 
     /**
      * Inserts the given text into the text area at cursor position
@@ -191,77 +196,84 @@ public class FileWindow extends JPanel {
 
     /**
      * getter for this window's text area
+     * 
      * @return JTextArea
      */
     public JTextArea getTextArea() {
         return textArea;
     }
-    
+
     /**
      * Setter for the window's text area
+     * 
      * @param text
      */
     public void setTextArea(String text) {
-    	textArea.setText(text);
+        textArea.setText(text);
     }
 
     /**
      * Check if this file has been modified or not
+     * 
      * @return boolean
      */
     public boolean isSaved() {
         return saved;
     }
-    
+
     /**
      * Mark that this file has been saved
      */
     public void save() {
         saved = true;
     }
-    
+
     public HTMLComponent getRootNode() {
         return root;
     }
-    
+
     /**
      * Set the fileWindow's root node to the given node
-     * @param node: the new root node
+     * 
+     * @param node
+     *            : the new root node
      */
     public void setRootNode(HTMLComponent node) {
-        if(node == null) {
+        if (node == null) {
             System.out.println("null");
-        }else {
-            //System.out.println(node.getText() + "\n\nnode\n");
+        } else {
+            // System.out.println(node.getText() + "\n\nnode\n");
             this.root = node;
         }
     }
-    
+
     /**
      * Set this fileWindow's state given a memento
-     * @param memento: previous state to restore to
+     * 
+     * @param memento
+     *            : previous state to restore to
      */
     private void setState(FileWindowMemento memento) {
-        if(memento == null) {
+        if (memento == null) {
             return;
         }
         root = memento.getRootNode();
-        if(root != null) {
+        if (root != null) {
             textArea.setText(root.getText());
         } else {
             textArea.setText("");
         }
-        
+
         saved = memento.getSavedState();
     }
-    
+
     /**
      * Return this fileWindow to the previous state
      */
     public void undo() {
         setState(caretaker.retrieveMemento());
     }
-    
+
     /**
      * Save the current state as a memento and give it to the caretaker
      */
@@ -269,29 +281,29 @@ public class FileWindow extends JPanel {
         parent.check();
         caretaker.addMemento(new FileWindowMemento(root, saved));
     }
-    
+
     /**
      * Create a link view, or refresh it if it already exists
      */
     public void showLinkView() {
         parent.check();
-        if(linkView == null) {
+        if (linkView == null) {
             linkView = new LinkView(this);
-        }
-        else {
+        } else {
             linkView.refresh();
         }
     }
-    
+
     /**
      * Remove the linkView from this window
      */
     public void clearLinkView() {
         this.linkView = null;
     }
-    
+
     /**
      * getter for link view
+     * 
      * @return linkView
      */
     public LinkView getLinkView() {
