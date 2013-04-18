@@ -22,11 +22,12 @@ public class Paste {
 		 * insert it at current text location
 		 */
 		
+		editor.getActiveFileWindow().saveState();
 		text = editor.getClipboard().getText();
 		editor.getActiveFileWindow().getTextArea().insert(
 			text, editor.getActiveFileWindow().
 				getTextArea().getSelectionStart());
-		editor.getActiveFileWindow().saveState();
+		
 	}
 	
 }

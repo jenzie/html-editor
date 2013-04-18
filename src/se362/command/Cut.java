@@ -21,10 +21,11 @@ public class Cut {
 		 * Save text to GUI Clipboard
 		 * Remove text from TextArea
 		 */
+		editor.getActiveFileWindow().saveState();
 		String cut = editor.getActiveFileWindow().getTextArea().getSelectedText();
 		editor.getActiveFileWindow().getTextArea().cut();
 		editor.getClipboard().setText(cut);
-		editor.getActiveFileWindow().saveState();
+		
 	}
 	
 }

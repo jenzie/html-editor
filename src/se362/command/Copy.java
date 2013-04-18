@@ -19,10 +19,10 @@ public class Copy {
 		 * Find current selected text
 		 * Save it to the GUI Clipboard
 		 */
-		
+		editor.getActiveFileWindow().saveState();
 		text = editor.getActiveFileWindow().getTextArea().getSelectedText();
 		editor.getClipboard().setText(text);
-		editor.getActiveFileWindow().saveState();
+		
 		
 	}
 	
