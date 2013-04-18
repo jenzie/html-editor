@@ -33,7 +33,7 @@ public class HTMLCheck {
 
 	public HTMLComponent doCheck() {
 		String file = "";
-		System.out.println("---- STARTING CHECK ----");
+//		System.out.println("---- STARTING CHECK ----");
 		count = 0;
 		file = editor.getActiveFileWindow().getAllText();
 		Source source = new Source(file);
@@ -47,7 +47,6 @@ public class HTMLCheck {
 					continue;
 				}
 				if (x.toString().equals("normal")) {
-					System.out.println("ADD: " + tag.toString());
 					addHTMLNode(tag.getName());
 				} else {
 					if (checkCloseTag(tag.getName()) == false) {
@@ -62,7 +61,7 @@ public class HTMLCheck {
 			}
 		}
 		if (validTree()) {
-			System.out.println(current.getText());
+//			System.out.println(current.getText());
 			return current;
 		} else {
 			return null;
@@ -75,8 +74,6 @@ public class HTMLCheck {
 	 * @return true if tree is valid, false if tree is invalid
 	 */
 	private boolean validTree() {
-		System.out.println("Current's: " + current.getName());
-		System.out.println("Current's Parent: " + current.parent);
 		if ((current == null) || (current.parent != null)) {
 			editor.setMessage("HTML is not well-formed.");
 			return false;
@@ -126,7 +123,7 @@ public class HTMLCheck {
 	private void addLeafNode(String name) {
 		HTMLLeaf newNode = new HTMLLeaf(name, "", current);
 		current.add(newNode);
-		System.out.println("Adding LeafNode: " + newNode.getName());
+//		System.out.println("Adding LeafNode: " + newNode.getName());
 	}
 
 	/**
@@ -135,18 +132,16 @@ public class HTMLCheck {
 	 * is the first node, it will set parent to 'null'.
 	 */
 	private void addHTMLNode(String tag) {
-		// String cleanTag = tagParse(tag);
-
 		if (count == 0) {
 			HTMLComponent newNode = new HTMLComposite(tag, "unclosed", null);
 			current = newNode;
-			System.out.println("Adding Root node: " + current.getName());
+//			System.out.println("Adding Root node: " + current.getName());
 			count++;
 		} else {
 			HTMLComponent newNode = new HTMLComposite(tag, "unclosed", current);
 			current.add(newNode);
 			current = newNode;
-			System.out.println("Adding Node: " + current.getName());
+//			System.out.println("Adding Node: " + current.getName());
 			count++;
 		}
 	}
@@ -158,18 +153,13 @@ public class HTMLCheck {
 	 * node for further processing.
 	 * @return false if tag does not match current tag, true if it does.
 	 */
-
 	private boolean checkCloseTag(String tag) {
-		System.out.println("Closing Tag Encountered: " + tag);
-		System.out.println("Current Tag: " + current.getName());
 		if (count == 0)   //if the first tag encountered is a close tag
 			return false;
 		if (tag.compareTo(current.getName()) != 0) {
 			return false;
 		} else {
 			if (current.parent != null) {
-				System.out.println("Tag: " + tag + "Current: "
-						+ current.getName());
 				current.setCloseTag(tag);
 				current = current.parent;
 			}
