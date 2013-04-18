@@ -13,13 +13,13 @@ import se362.composite.HTMLCheck;
 
 public class HTMLCheckTest extends TestCase {
 
-//	public void testCheckValid() throws Exception{
-//		Assert.assertTrue(HTMLCheck.checkValid("<html>"));
-//		Assert.assertTrue(HTMLCheck.checkValid("<table>"));
-//		Assert.assertFalse(HTMLCheck.checkValid("<foo>"));
-//		Assert.assertTrue(HTMLCheck.checkValid("</html>"));
-//
-//		Assert.assertTrue(HTMLCheck.checkValid("<a href="));
-//		Assert.assertTrue(HTMLCheck.checkValid("<img src="));
-//	}
+	public void testCheckValid() throws Exception{
+		Assert.assertTrue(HTMLCheck.checkValid("<html>"));
+		Assert.assertTrue(HTMLCheck.checkValid("<table>"));
+		Assert.assertFalse(HTMLCheck.checkValid("<foo>"));
+		Assert.assertTrue(HTMLCheck.checkValid("</html>"));
+
+		Assert.assertTrue(HTMLCheck.checkValid("<a href="));
+		Assert.assertTrue(HTMLCheck.checkValid("<img src="));
+	}
 }
