@@ -381,7 +381,7 @@ public class GUI extends JFrame {
                 getActiveFileWindow().showLinkView();
             }
         });
-        editMenu.add(mntmCut);
+        editMenu.add(mntmLnkVw);
 
         JMenuItem mntmCopy = new JMenuItem("Copy", new ImageIcon(
                 GUI.class.getResource("/copy.png")));
