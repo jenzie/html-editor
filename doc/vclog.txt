@@ -1,0 +1,570 @@
+commit cc28768935a934e1fc199fa2ec215557753453ed
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 16:08:05 2013 -0400
+
+    Sneaky Insert file
+
+commit a4e0958fbf6af474f950a86b55d84a6dd32eeede
+Merge: 64be7ae f467e2a
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 16:06:42 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit 64be7aee78d1113ee70618d837998022f9dadc2c
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 16:06:16 2013 -0400
+
+    Insert adds things
+    
+    Magic.
+
+commit f467e2ada8f11c5d9d78800d86ea76536b2b40b7
+Merge: f100792 b1bf249
+Author: Kevin <kam9115@rit.edu>
+Date:   Tue Mar 26 16:05:14 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit f100792ba1456c0bd63b6f9888bba4e065a98663
+Author: Kevin <kam9115@rit.edu>
+Date:   Tue Mar 26 16:03:43 2013 -0400
+
+    Added some functionality for saved/unsaved
+
+commit b1bf2496504816343ada9e765704b7e2b770be20
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Tue Mar 26 15:53:02 2013 -0400
+
+    Fixed bug in HTMLCheck - still errors on save
+
+commit 9657765120fc93c5526828f3c7a75e0f9338c7ed
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Tue Mar 26 15:46:31 2013 -0400
+
+    Fixed the methods that were supposed to be abstract.
+
+commit abcbbbaf0464071382fbd75c023abcdb27a2b6ba
+Merge: 661d10e 89cbbd2
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 15:43:57 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit 661d10ecfbce4ca4a2df30993157e23b6527b09a
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 15:43:20 2013 -0400
+
+    Added Insert Menu Items to the GUI
+    
+    Need to add Insert object
+
+commit 89cbbd241d167ad181118cff05f9dd481550e4e4
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Tue Mar 26 15:10:30 2013 -0400
+
+    Error fixed in HTMLCheck
+
+commit 19009eb4c4837e96ca1f40d91e1f526b0b7e9d2e
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 15:09:20 2013 -0400
+
+    Adding Indent and Insert COmmands
+    
+    Will have errors without indent and insert objects
+
+commit 1502ce86a716ab0364eab8effd6b7523cfd8f267
+Author: Kevin <kam9115@rit.edu>
+Date:   Tue Mar 26 15:08:10 2013 -0400
+
+    updated Open commands
+
+commit 27661fff2d8fe26bebdd5233f67d450f1604d222
+Author: Kevin <kam9115@rit.edu>
+Date:   Tue Mar 26 15:06:38 2013 -0400
+
+    control characters commands done, some work on html check message
+
+commit b0b80aa0c3cf7df6f5c334e612e14b5f5702b186
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 15:04:59 2013 -0400
+
+    Updated TextFunctions with new COmmands
+
+commit 51c7822458f121ca0c4e16324eb317d6c69091b4
+Merge: 0365628 ab5b6f8
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Tue Mar 26 14:58:58 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit 0365628a70ffe1ca47fd35531ccaa8c014ee67af
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Tue Mar 26 14:57:51 2013 -0400
+
+    Complete HTMLCheck class.
+
+commit ab5b6f86426c7b9f287513cfe2bc98b529cf2b79
+Merge: 6db4621 d7c4b35
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 14:56:02 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit 6db4621bb940d37f89f7946ca40ec1fde9801a7b
+Author: Brad Bensch <bbensch@live.com>
+Date:   Tue Mar 26 14:53:37 2013 -0400
+
+    Added Open to the command structure
+    
+    Took open functionality from the GUI and moved it to the Open doOpen
+    command
+
+commit d7c4b3585ffb7234de17fe9e37432e9e6da1a897
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Tue Mar 26 14:38:15 2013 -0400
+
+    Forgot a closing parenthesis in comments.
+
+commit 83c9777444006ebbcfd16be516a34580b0bf263e
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Tue Mar 26 14:22:30 2013 -0400
+
+    Better implementation of HTMLCheck()
+
+commit 9a1202dfb093765f5a4bbf67d687555c97ecfa63
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Mon Mar 25 20:48:04 2013 -0400
+
+    Fixed lines so they are within the 80 character limit.
+
+commit ca94c6e0dbadf9dc9069139d60201ff14bf168a2
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 25 17:50:52 2013 -0400
+
+    Added links between TextFunctions and GUI
+
+commit 776bf8eeea21b707a3b006b21731383576269712
+Author: Brad Bensch <bbensch@live.com>
+Date:   Mon Mar 25 17:30:26 2013 -0400
+
+    Finished Receiver functionality
+    
+    Removed HTMLChecker, htmlcheck does the necessary things
+    Added SaveAsCommand and SaveAs
+    
+    Planning on adding return strings to receivers for HTMLCheck.
+
+commit 8ec30e3fbf7fdc0df25b2789130b7bd2616460e3
+Merge: f989508 078d15a
+Author: Brad Bensch <bbensch@live.com>
+Date:   Mon Mar 25 17:28:48 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit 078d15aed722d2482228ec736d36cca1675b64e1
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 25 17:28:36 2013 -0400
+
+    Added getter for FileChooser
+
+commit f989508b4ee990075202d0a80696f35017a093ec
+Merge: b04889c d8b2a5a
+Author: Brad Bensch <bbensch@live.com>
+Date:   Mon Mar 25 17:22:03 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit d8b2a5abf23ad7ad56a6d12e3610133c33b6f8ee
+Merge: fcfe75c 679abb1
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Mon Mar 25 17:16:34 2013 -0400
+
+    Merge branch 'master' of https://ckoppes@bitbucket.org/kamskywalker/htmleditor.git
+
+commit fcfe75c6bd6259d6cfba0fbe6acf42f20a5caaf4
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Mon Mar 25 17:09:28 2013 -0400
+
+    HTMLCheck connected to GUI
+    
+    Need to build the file parser.
+
+commit 679abb158d42b1ab50b81c734969e29e652e6985
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 25 16:39:07 2013 -0400
+
+    Added getters for textarea, all text, active tab
+
+commit b04889cf20478ab581a8cf2f169f2b37385415ea
+Author: Brad Bensch <bbensch@live.com>
+Date:   Mon Mar 25 16:29:23 2013 -0400
+
+    Added functionality to most Receiver classes
+    
+    Save still not yet implemented. Left HTMLChecker unfinished due to design
+    change
+
+commit ead5007b17f99914c5ba15fc518821abcf456a79
+Merge: 9363e52 34b7445
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Mon Mar 25 16:24:08 2013 -0400
+
+    Merge branch 'master' of https://ckoppes@bitbucket.org/kamskywalker/htmleditor.git
+
+commit e0d20e8129da818d710f352ced36630075a7ab3e
+Author: Brad Bensch <bbensch@live.com>
+Date:   Mon Mar 25 16:07:33 2013 -0400
+
+    Added Receiver Class constuctors
+    
+    Receiver classes now require the GUI for accessing the fileWindows for the
+    text.
+
+commit 34b74456f869e95a9b8b11798433e9eeedfeaa5a
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 25 15:45:03 2013 -0400
+
+    Added getters for clipboard and active tab
+
+commit 33e32ee2b34d5a8496f2de556242de99c5df4363
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 25 15:16:02 2013 -0400
+
+    added indexes as fields
+
+commit e023cb4f71393cf51d05e1bb4e231bcb7c845321
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 25 15:12:51 2013 -0400
+
+    Added preliminary control character command structure
+
+commit d9b58a7bd70305e455dac54a681fb390785368fc
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 25 14:10:40 2013 -0400
+
+    reformatted list for easier reading
+
+commit 9363e52597046feb1456bedd81190c4c06382ace
+Author: Chad Koppes <chadkoppes@gmail.com>
+Date:   Mon Mar 25 12:29:26 2013 -0400
+
+    Initial HTMLCheck functionality.
+    Edited HTMLComponent, HTML Composite and HTMLLeaf slightly to get it
+    working.
+
+commit acf53b9b62f80d994963cb5daf44c0fdb73162a1
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Sun Mar 24 22:42:09 2013 -0400
+
+    Finished adding comments; still need to do unit tests.
+
+commit 0179a111503a7598f33fe731bf4c7c33e2ee5310
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Sun Mar 24 22:24:13 2013 -0400
+
+    Worked on the adding of children to parent nodes.
+
+commit 6d4fad21cd7553a3d6dd35d94763516b2ad82194
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Sun Mar 24 22:06:47 2013 -0400
+
+    Added comments to the HTMLComponent. Worked on the check for valid tag; needs testing.
+
+commit bbcc9d98666cb4ac1b5051e73825df4e341b0d82
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Sun Mar 24 21:57:40 2013 -0400
+
+    Added comments to the enum.
+
+commit 630b1119c2c58843bee2e76f8c5b6dfac29948c3
+Merge: b42928d 2c20d8e
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sun Mar 24 18:14:32 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit b42928d76916626d64e820afb5c628fe3ee02b2f
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sun Mar 24 18:13:54 2013 -0400
+
+    Missed Adding Save class
+
+commit f9f14173436a4f66ecfcdfe9da5e09224ab0cb97
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sun Mar 24 18:03:38 2013 -0400
+
+    Added comments for stubbed Receiver classes
+
+commit 2c20d8e59cde58d25137e403a5e052e358c0e305
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Sun Mar 24 17:56:53 2013 -0400
+
+    Added more html tags to the enums.
+
+commit f1575bd99fe7c0f031babcd4d43757e03d47c4f9
+Merge: d727959 c6ff6ff
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Sun Mar 24 17:55:54 2013 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit d7279596b688d53298369535f8abd877a8ab1b3d
+Merge: 857b2dd c9e82fe
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Sun Mar 24 17:55:49 2013 -0400
+
+    Merge remote-tracking branch 'origin/master'
+    
+    Conflicts:
+    	src/se362/HTMLConstructs.java
+
+commit c6ff6ff34e30ab4b40db0c7c58357875fc835cd2
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sun Mar 24 17:55:07 2013 -0400
+
+    Added stub methods for receiver classes
+    
+    No functionality yet
+
+commit 857b2dd5f30caf78a2c0828fd01720733ebeb3a2
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Sun Mar 24 17:53:38 2013 -0400
+
+    Added more html tags to the enums.
+
+commit 504710f570b435d7c6e47fb8ecf26bb41c607bdd
+Merge: bcd485c c9e82fe
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sun Mar 24 17:47:46 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit c9e82fece30df1ae215d7c43adbe87ad2596cc8c
+Author: Kevin <kam9115@rit.edu>
+Date:   Sun Mar 24 17:19:43 2013 -0400
+
+    updates to GUI
+
+commit c6e2742cf8914ac7d3dbc3e674ca05b376e38791
+Author: Kevin <kam9115@rit.edu>
+Date:   Sun Mar 24 15:51:06 2013 -0400
+
+    Added comments, new buttons in GUI
+
+commit 2b23c3f1f90f4b0f8ab9e70fb524ee7bf147a17f
+Author: Kevin <kam9115@rit.edu>
+Date:   Sun Mar 24 15:09:23 2013 -0400
+
+    Added Clipboard, Added some tags to HTMLConstructs, Updates to GUI
+
+commit bcd485c62afd8e5c4728560a67f137bdd073c3b7
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sat Mar 23 00:46:09 2013 -0400
+
+    Recreated Save
+    
+    Was requiring things it shouldn't have. The method had no functionality
+
+commit 9272ccd7ae7dc69d1f3ee1f47493c8526a564877
+Merge: 25a9dd3 6dad692
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sat Mar 23 00:43:53 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit 25a9dd36ed9728c800920603373b59c9b3f9d57a
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sat Mar 23 00:41:36 2013 -0400
+
+    Added HTMLCheckerCommand and NewFileCommand
+    
+    Also included the receiver classes, with no functionality
+
+commit 6dad6925f292bf0947a29694a07656dbf344d63d
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Fri Mar 22 20:50:31 2013 -0400
+
+    Added comment to the HTMLComponent constructor.
+
+commit 665d3520fc60db94d9ec891a74531738ab41b2e6
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Fri Mar 22 20:45:47 2013 -0400
+
+    Fixed the return statement to return false by default.
+
+commit e0028e53adb65f6109e6bbfff4fbcfe1c941de49
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Fri Mar 22 20:44:53 2013 -0400
+
+    I should have most of the methods completed/stubbed. I still need to write unit tests, at some point...
+
+commit d044fe6c3eb445c74e199098e10d26afbc6fc897
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Fri Mar 22 20:23:04 2013 -0400
+
+    Started working on the check for valid html.
+
+commit 89d6ec97b23783074dfb2df639718337b7fe81f1
+Author: Jenny Zhen <coffee@csh.rit.edu>
+Date:   Fri Mar 22 20:20:12 2013 -0400
+
+    Started working on the check for valid html.
+
+commit f6a0d527a759d277239224ff903c0c831fba997e
+Author: Brad Bensch <bbensch@live.com>
+Date:   Fri Mar 22 17:21:19 2013 -0400
+
+    Added TODOs
+    
+    Something happened to Save, its not being happy though it has nothing in
+    it.
+
+commit e8bf370c7c09aa3f727cbe11c480ae2eea960460
+Author: Brad Bensch <bbensch@live.com>
+Date:   Fri Mar 22 17:12:00 2013 -0400
+
+    Added Comments to newly Generatd Files
+
+commit 505818fbac64c9fcbbef08620da5ea6e46c2a43d
+Author: Brad Bensch <bbensch@live.com>
+Date:   Fri Mar 22 16:50:21 2013 -0400
+
+    Renamed Invoker, finished Concrete Classes
+    
+    Added functionality to CopyCommand, renamed Invoker to a more appropriate
+    TextFunctions
+
+commit 1bfdd4514cbb60f5cbc35d804d59606e2c44db01
+Author: Brad Bensch <bbensch@live.com>
+Date:   Fri Mar 22 16:27:59 2013 -0400
+
+    Added Concrete commands and Receiver classes
+    
+    Concrete Classes written with errors on non-existant method calls in
+    receiver classes. Invoker exists with no state or methods
+    
+    CopyCommand not filled out
+
+commit 26211035d63cf22909c14917a1774ab22b3beeb1
+Author: Kevin <kam9115@rit.edu>
+Date:   Wed Mar 20 23:50:08 2013 -0400
+
+    GUI comments, added Command interface/package
+
+commit 38bff9bda56bc650b978201f895b5972cc2c16ea
+Author: Kevin <kam9115@rit.edu>
+Date:   Wed Mar 20 23:33:39 2013 -0400
+
+    Added close tab method/menu item, FileChooser only shows html and txt
+    files
+
+commit 5dd5b89ff175a71add4ae5bd9f64fbf0543538dd
+Author: Kevin <kam9115@rit.edu>
+Date:   Wed Mar 20 23:01:57 2013 -0400
+
+    Added open functionality
+
+commit 851d26915e415e3a7cd9b7e113293ec6152f0221
+Author: Kevin <kam9115@rit.edu>
+Date:   Wed Mar 20 17:13:52 2013 -0400
+
+    GUI now opens empty file on run
+
+commit 02b3fcf5d6b5bc1fe8ae1153fabd610c1d67045c
+Author: Kevin <kam9115@rit.edu>
+Date:   Wed Mar 20 15:29:49 2013 -0400
+
+    addition to constructor for file reading
+    text area now displays
+
+commit 1094e6955c9f7c0f410f946e49ae1dc80b48e567
+Author: Kevin <kam9115@rit.edu>
+Date:   Tue Mar 19 15:22:28 2013 -0400
+
+    added main for testing
+
+commit a4c1090ef82cd8fdf972906e7beeb7d53a9e63fb
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 18 15:41:56 2013 -0400
+
+    Added comments to HTMLConstructs
+
+commit cadf7b4a8d7e6c94d21e6201925d8d87a7d6a55a
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 18 15:34:20 2013 -0400
+
+    Updated package structure, added enum for HTML constructs
+
+commit ed45d2e273fd526f689e6bdd9b247af2812b8363
+Author: Kevin <kam9115@rit.edu>
+Date:   Mon Mar 18 15:07:01 2013 -0400
+
+    Replaced icons, fixed icon display
+
+commit 036d69b2ccb37b2ce4c73bac8b2d5eba316e19f5
+Author: Kevin <kam9115@rit.edu>
+Date:   Sun Mar 17 16:29:32 2013 -0400
+
+    added bin to .gitignore
+
+commit b4daeca752fd22ca298b1d29d63540d2994064ad
+Author: Kevin <kam9115@rit.edu>
+Date:   Sun Mar 17 16:22:24 2013 -0400
+
+    Added icons file/folder
+
+commit 1458984e32b055ad3dc80c20ba74f3213df15b97
+Merge: b594a82 f0e733e
+Author: unknown <Kevin@Kevin-Laptop.(none)>
+Date:   Sun Mar 17 16:05:51 2013 -0400
+
+    Merge branch 'master' of https://bitbucket.org/kamskywalker/htmleditor
+
+commit b594a82fe597f906862a7035b34b9efc23927862
+Author: unknown <Kevin@Kevin-Laptop.(none)>
+Date:   Sun Mar 17 16:05:26 2013 -0400
+
+    Added .classpath
+
+commit f0e733e75ea4821a6fef47d870629cec9eb2c12a
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sun Mar 17 16:02:55 2013 -0400
+
+    Added Constructors for FileWindow
+    
+    Included: Stubs for save and terminate methods
+
+commit 14a543bb2ebab3da3753a707396f18aa9f126250
+Merge: 3f897a7 5fd20eb
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sun Mar 17 16:01:03 2013 -0400
+
+    Merge branch 'master' of https://brb7020@bitbucket.org/kamskywalker/htmleditor.git
+
+commit 3f897a73a0c6758880399024b0dcfbea7a7421f7
+Author: Brad Bensch <bbensch@live.com>
+Date:   Sun Mar 17 16:00:41 2013 -0400
+
+    Wrote constructors for FileWindow
+    
+    Stubbed (on)save and on(terminate) methods. Basic comments included
+    TODO: Figure out plan for sending content
+
+commit 5fd20eb5e5daff7137c082c5888d4e563ab23e6d
+Author: unknown <Kevin@Kevin-Laptop.(none)>
+Date:   Sun Mar 17 16:00:23 2013 -0400
+
+    Added icons folder, some work on GUI
+
+commit 69a4d5f4795f04e84b4f49dd3a26cd3d83e7d592
+Author: unknown <Kevin@Kevin-Laptop.(none)>
+Date:   Fri Mar 15 16:15:19 2013 -0400
+
+    Initial Commit
+
+commit 6fe6ad0ece1a6c15f73a513e49dec91d43cd7be6
+Author: unknown <Kevin@Kevin-Laptop.(none)>
+Date:   Fri Mar 15 16:11:51 2013 -0400
+
+    Initial Commit

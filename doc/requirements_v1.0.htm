@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		
+		<title>HTML Editor Project</title><link href="../../css/basic.css" rel="stylesheet" type="text/css" media="all"></head>
+<body alink="#99c999" background="../../_themes/capsules/captext.gif" bgcolor="#ffffff" link="#000099" text="#000000" vlink="#339966">
+		<h1 align="center"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font color="#000099">HTML Editor Design Exercise</font></font></font></h1>
+		<p align="center"><font face="Arial, Helvetica"><img src="../../_themes/capsules/capsepa.gif" height="10" width="600"></font></p>
+		<font face="Arial, Helvetica">For
+this project you will develop a simple editor for HTML files.&nbsp; The
+project will start in Unit 2 and be continued in Unit 3. Teams will
+stay the same through both units of work. The emphasis for the project
+is the application of patterns in appropriate places and justification
+of those choices.&nbsp; A working program must be created.&nbsp; Since
+the emphasis of the course is design, spiffy implementations sitting on
+top of a weak design will not be viewed favorably.&nbsp; This is also
+not a pattern frenzy, in that, there almost definitely will be areas
+where it is not appropriate to apply a pattern to the design. </font>
+		<p><font face="Arial, Helvetica">Each
+release will have a set of requirements defined.&nbsp; The release 2
+requirements may necessitate refactoring of your release 1 code
+base.&nbsp; As new patterns are discussed in class incorporation of
+them should also be considered.</font></p>
+		<h2><font face="Arial, Helvetica"><font color="#000099">Release 1 Requirements</font></font></h2>
+		<div align="left">
+			<p>The release 1 functional requirements are:</p>
+			<ul>
+				<li><font face="Arial, Helvetica">The
+editor shall provide a point-and-click method to specify an HTML file
+to edit and a method to browse directories.&nbsp; The name of the HTML
+file can also be specified as a command line argument.</font>
+				</li><li><font face="Arial, Helvetica">The
+editor should be able to have multiple files open for editing.&nbsp; If
+multiple files are open, the user can select which file is being viewed.</font>
+				</li><li><font face="Arial, Helvetica">The
+editor shall support the insertion of standard HTML constructs.&nbsp;
+At a minimum, this support should allow the user to select an HTML
+construct.&nbsp; The editor shall then insert the standard set of
+matching tags for that construct into the current HTML buffer at the
+current location for editing.&nbsp; At least the following constructs
+should be supported: headers, font emphasis (bold, italics), list
+(numbered, bulleted, dictionary), tables.&nbsp; The editor may provide
+additional support such as prompting for fields in the construct.&nbsp;
+It shall allow for specifying the size of a table or list and cause
+that number of internal item tags to be inserted in the file.</font>
+							</li><li><font face="Arial, Helvetica">The editor shall support cut-and-paste editing within a buffer and between buffers.</font>
+							</li><li><font face="Arial, Helvetica">The
+editor shall allow the user to select editor options via menu choices.
+The editor may optionally provide selection via short-cut or
+accelerator keys.</font>
+							</li><li><font face="Arial, Helvetica">The
+editor shall provide a method to save changes to the HTML file with the
+current file name, a modified file name, or newly specified name if it
+is the first editing session on this file.</font>
+				</li><li><font face="Arial, Helvetica">The
+editor shall provide a check that the buffer is well-formed HTML. The
+editor shall perform a well-formed check when loading a file and alert
+the user that the loaded file is not well-formed. The editor may
+operate with reduced functionality until the user corrects the buffer
+and a well-formed check passes. The editor shall perform a well-formed
+check when saving a buffer and alert the user that the buffer being
+saved is not well-formed. The editor shall allow the user to abort the
+save or continue.</font>
+				</li><li><font face="Arial, Helvetica">The
+editor shall provide a way to terminate operation.&nbsp; It shall warn
+the user if any buffers have unsaved changes and allow the user to
+abort program termination.</font>
+				</li><li><font face="Arial, Helvetica">The
+editor shall support auto-wrap of text at the end of a line.&nbsp; When
+the cursor reaches the right margin a new line will be opened
+below.&nbsp; The word currently being typed is moved to this new line
+and entry continues.&nbsp; The word-wrap feature can be turned on and
+off.</font>
+				</li><li><font face="Arial, Helvetica">The editor
+shall support auto-indent of HTML constructs.&nbsp; Auto-indent will
+show the structure of the HTML constructs such as lists and
+tables.&nbsp; If the cursor is auto-wrapped while information is being
+entered the cursor will auto-indent the wrapped-text.&nbsp; If the
+enter key is typed the cursor will auto-indent on the next line.&nbsp;
+Indentation on a new line will be at the same level as the previous
+line unless a new structure has been entered such as a list item.&nbsp;
+Once a line is indented the user can change the indentation spacing by
+editing the text.&nbsp; This change will be the spacing used for future
+indentation of the current level.&nbsp; The auto-indentation feature
+can be turned on and off.&nbsp; The user can specify the number of
+characters for indentation.</font>
+				</li><li><font face="Arial, Helvetica">The
+editor shall have a command for indenting the current line, the
+selected text or the entire buffer.&nbsp; This will re-indent the
+selected item to the current indentation specification.</font>
+			</li></ul>
+			<p><font face="Arial, Helvetica">The project non-functional requirements are:</font></p>
+			<ul>
+				<li>
+				<div align="left">
+						<font face="Arial, Helvetica">The editor shall be written in Java.</font>
+				<li><font face="Arial, Helvetica">The editor shall be tested for correct functionality on the systems in the SE labs.</font>
+				</li><li>The editor may use code from the standard Java SDK.  The use of any other material must have prior instructor approval.
+					</li><li>The working editor shall be delivered as an executable jar file.<br></li></div><br><div align="center">
+			<img src="../../_themes/capsules/capsepa.gif" height="10" width="600"></div>
+		<address> Revision: $Revision: 1.5 $, $Date: 2013-03-14 17:34 jsh $</address>
+	</li></ul></div></body></html>
