@@ -1,5 +1,6 @@
 HTML Editor
 ===========
+The primary focus of this project was on the design. Various design patterns were researched for their applicability, benefits, and drawbacks to this project's needs and requirements.
 
 Release 1 Requirements
 ----------------------
